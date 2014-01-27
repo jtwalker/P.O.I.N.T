@@ -4,9 +4,12 @@ header, footer, aside, nav, article {
 }
 
 /* .wrapper_all handles the entire page */
-.wrapper_all {
+html {
 	
 	background-color: #FFFFFF;
+	background-image: url('/assets/POINT-background.jpg');
+	background-repeat: no-repeat;
+	background-position: top center;
 	padding-left: 25px;
 	padding-right: 25px;
 	
