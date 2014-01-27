@@ -1,0 +1,59 @@
+/* Tell the browser to render HTML 5 elements as block */  
+header, footer, aside, nav, article {  
+    display: block;  
+}
+
+/* .wrapper_all handles the entire page */
+.wrapper_all {
+	
+	background-color: #FFFFFF;
+	padding-left: 25px;
+	padding-right: 25px;
+	
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	
+}
+
+h1 {
+	font-size: 21px;
+}
+
+h2 {
+	font-size: 16px;
+}
+
+p {
+	font-size: 14px;
+}
+
+/* .body handles the mid section, body of the page*/
+.body {
+    
+    width:800px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:10px;
+    
+    border-left: 2px solid black;
+    border-right:2px solid black;
+}
+
+/* .header handles the top, header of the page. Includes .navigation within it*/
+header {
+	position: relative;
+	border-bottom: 5px solid black;
+}
+
+/* .navigation, within .header, handles the navigational links of the app */
+nav {
+	position: relative;
+	float: right;
+	padding-right: 25px;
+	
+}
+
+/* .footer handles the foot of the page */
+footer {
+	position: relative;
+	border-top: 5px solid black;
+}

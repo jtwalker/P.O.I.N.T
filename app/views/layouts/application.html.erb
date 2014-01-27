@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Point</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<%= stylesheet_link_tag "point_app" %>
+		
+		<title>POINT</title>
+	</head>
+	
+	<div class = "wrapper_all">
+		
+		<header>
+			
+			<%= image_tag "POINT-Logo-1.jpg" %>
+			
+			<nav>
+				<p>Link 1	Link 2	Link 3	Link 4</p>
+				<!-- Will change when pages are created -->
+			</nav><!-- closes nav -->
+			
+		</header><!-- closes header -->
+		
+		<div class="body">
+			
+			<%= yield %>
+			
+		</div><!-- closes body -->
+		
+		<footer>
+			<p>Footer</p>
+		</footer><!-- closes footer -->
+	
+	</div><!-- closes wrapper_all -->
 
-<%= yield %>
-
-</body>
 </html>
