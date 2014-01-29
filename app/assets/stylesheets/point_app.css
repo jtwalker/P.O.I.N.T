@@ -36,6 +36,7 @@ p {
 	margin-left:auto;
 	margin-right:auto;
 	padding:10px;
+	background-color: #FFFFFF;
     
     border-left: 2px solid black;
     border-right:2px solid black;
@@ -49,10 +50,20 @@ header {
 
 /* .navigation, within .header, handles the navigational links of the app */
 nav {
-	position: relative;
+	position: absolute;
+	top: 0;
+	right: 0;
 	float: right;
 	padding-right: 25px;
 	
+}
+
+nav ul {
+	list-style-type: none;
+}
+
+nav li {
+	display: inline;
 }
 
 /* .footer handles the foot of the page */

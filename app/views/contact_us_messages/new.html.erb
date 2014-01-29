@@ -1,0 +1,25 @@
+<%= form_for :contact_us_message, url: contact_us_messages_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+  
+  <p>
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </p>
+  
+  <p>
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </p>
+ 
+  <p>
+    <%= f.label :message %><br>
+    <%= f.text_area :message %>
+  </p>
+ 
+  <p>
+    <%= f.submit "Send Message" %>
+  </p>
+<% end %>

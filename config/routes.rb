@@ -1,6 +1,10 @@
 Point::Application.routes.draw do
   
   get "main/home"
+  
+  resources :contact_us_messages, :only => [:new, :create]
+  get "/contact_us_messages" => redirect("/contact_us_messages/new")
+  
   root "main#home"
   
   # The priority is based upon order of creation: first created -> highest priority.
