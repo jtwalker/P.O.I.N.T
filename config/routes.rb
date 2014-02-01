@@ -4,6 +4,7 @@ Point::Application.routes.draw do
   get "main/rules"
   
   resources :contact_us_messages, :only => [:new, :create]
+  get "contact_us_messages/confirmation"
   get "/contact_us_messages" => redirect("/contact_us_messages/new")
   
   root "main#home"

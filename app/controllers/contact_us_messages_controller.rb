@@ -17,7 +17,12 @@ class ContactUsMessagesController < ApplicationController
     #ActionMailer::Base.mail(to: 'skendri1@my.westga.edu', 
     #from: 'stephen.c.kendrick@gmail.com', subject: params[:contact_us_message][:subject].to_s, body: params[:contact_us_message][:message].to_s).deliver
     
-    redirect_to '/contact_us_messages/new'
+    redirect_to '/contact_us_messages/confirmation'
+  end
+  
+  # GET /contact_us_messages/confirmation
+  def confirmation
+    
   end
   
 end
