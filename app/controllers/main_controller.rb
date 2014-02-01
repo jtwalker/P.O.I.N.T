@@ -5,4 +5,9 @@ class MainController < ApplicationController
   
   end
   
+  # GET /main/rules
+  def rules
+    
+  end
+  
 end
