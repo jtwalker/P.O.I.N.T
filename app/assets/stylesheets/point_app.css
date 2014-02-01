@@ -55,7 +55,8 @@ nav {
 	right: 0;
 	float: right;
 	padding-right: 25px;
-	
+	width: auto;
+	margin-left, margin-right: auto;
 }
 
 nav ul {
