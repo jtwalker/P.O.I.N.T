@@ -2,6 +2,7 @@ Point::Application.routes.draw do
   
   get "main/home"
   get "main/rules"
+  get "main/underconstruction"
   
   resources :contact_us_messages, :only => [:new, :create]
   get "contact_us_messages/confirmation"

@@ -10,4 +10,9 @@ class MainController < ApplicationController
     
   end
   
+  # GET /main/underconstruction
+  def underconstruction
+    
+  end
+  
 end
