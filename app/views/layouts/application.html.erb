@@ -53,7 +53,7 @@
         				"width":  36,
         				"height": 36
       				},
-      				"infowindow": '<a href="http://www.google.com/maps?daddr=Aliso+Viejo,+CA" target="_blank">Driving Directions</a>'
+      				"infowindow": '<%= link_to("example", controller: "point_of_interest", action: "example") %>'
     			}
   			]);
   			handler.bounds.extendWith(markers);
