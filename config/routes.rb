@@ -1,5 +1,6 @@
 Point::Application.routes.draw do
   
+  get "point_of_interest/example"
   get "main/home"
   get "main/rules"
   get "main/underconstruction"
