@@ -1,5 +1,7 @@
 Point::Application.routes.draw do
   
+  resources :users
+
   get "point_of_interest/example"
   get "main/home"
   get "main/rules"
