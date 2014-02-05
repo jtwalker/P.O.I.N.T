@@ -12,8 +12,8 @@ class ContactUsMailer < ActionMailer::Base
     #mail( to: "noreplypoint@gmail.com" )
     @name = name.to_s
     @email = email.to_s
-    @subject = subject.to_s + " FROM: " + @name.to_s
-    @message = message.to_s
+    @subject = subject.to_s 
+    @message = message.to_s + " FROM: " + @name.to_s
     
     mail(to: 'noreplypoint@gmail.com', subject: @subject.to_s)
   end
