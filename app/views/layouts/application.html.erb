@@ -34,10 +34,6 @@
 			<%= yield %>
 			
 		</div><!-- closes body -->
-		
-		<footer>
-			<p>Footer</p>
-		</footer><!-- closes footer -->
 	
 	</div><!-- closes wrapper_all -->
 	
@@ -48,6 +44,18 @@
     			{
       				"lat": 55.85065,
       				"lng": -4.240723,
+      				"picture": {
+        				"path": "google.maps.SymbolPath.CIRCLE",
+        				"width":  36,
+        				"height": 36
+      				},
+      				"infowindow": '<%= link_to("example", controller: "point_of_interest", action: "example") %>'
+    			}
+  			]);
+  			markers = handler.addMarkers([
+    			{
+      				"lat": 10.85065,
+      				"lng": -1.240723,
       				"picture": {
         				"path": "google.maps.SymbolPath.CIRCLE",
         				"width":  36,

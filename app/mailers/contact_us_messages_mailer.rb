@@ -1,7 +1,7 @@
 #Class that handles the ContactUs mailer
 class ContactUsMessagesMailer < ActionMailer::Base
   
-  default from: 'stephen.c.kendrick@gmail.com'
+  default from: 'noreplypoint@gmail.com'
   
   # Sends an email to our email from their given email
   #
@@ -15,7 +15,7 @@ class ContactUsMessagesMailer < ActionMailer::Base
     @subject = subject.to_s + " FROM: " + @name.to_s
     @message = message.to_s
     
-    mail(to: 'skendri1@my.westga.edu', subject: @subject.to_s)
+    mail(to: 'noreplypoint@gmail.com', subject: @subject.to_s)
   end
   
 end 

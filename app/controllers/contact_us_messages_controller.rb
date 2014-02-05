@@ -14,7 +14,7 @@ class ContactUsMessagesController < ApplicationController
     subject_text = params[:contact_us_message][:subject].to_s + " FROM: " + params[:contact_us_message][:name].to_s
     body_text = params[:contact_us_message][:message].to_s + " EMAIL: " + params[:contact_us_message][:email].to_s
     
-    ActionMailer::Base.mail(from: 'stephen.c.kendrick@gmail.com', to: 'skendri1@my.westga.edu', subject: subject_text.to_s, body: body_text.to_s ).deliver
+    ActionMailer::Base.mail(from: 'noreplypoint@gmail.com', to: 'noreplypoint@gmail.com', subject: subject_text.to_s, body: body_text.to_s ).deliver
     #from: 'stephen.c.kendrick@gmail.com', subject: params[:contact_us_message][:subject].to_s, body: params[:contact_us_message][:message].to_s).deliver
     
     #ContactUsMessagesMailer.message(params[:contact_us_message][:name].to_s, params[:contact_us_message][:email].to_s, params[:contact_us_message][:subject].to_s, params[:contact_us_message][:message].to_s).deliver

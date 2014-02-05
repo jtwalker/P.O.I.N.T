@@ -14,7 +14,7 @@ html {
 	padding-right: 25px;
 	
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-	
+	height: 100%;
 }
 
 /* All Headers Styles */
@@ -33,7 +33,7 @@ p {
 
 /* .body handles the mid section, body of the page*/
 .body {
-    
+    height: 100%;
     width:800px;
 	margin-left:auto;
 	margin-right:auto;
@@ -42,6 +42,11 @@ p {
     
     border-left: 2px solid black;
     border-right:2px solid black;
+    border-bottom:  2px solid black;
+}
+
+.wrapper_all {
+	height: 100%;
 }
 
 /* .header handles the top, header of the page. Includes .navigation within it*/

@@ -32,8 +32,8 @@ Point::Application.configure do
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'smtp.gmail.com',
-  user_name:            '',
-  password:             '',
+  user_name:            'noreplypoint@gmail.com',
+  password:             'POINTCapstone',
   authentication:       'plain',
   enable_starttls_auto: true  }
   
