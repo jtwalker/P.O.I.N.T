@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<%= stylesheet_link_tag "point_app" %>
-		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application" %>
   		<%= csrf_meta_tags %>
 		
 		<title>POINT</title>
@@ -35,6 +35,25 @@
 			<%= yield %>
 			
 		</div><!-- closes body -->
+	<script type='text/javascript'>
+		handler = Gmaps.build('Google');
+		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  			markers = handler.addMarkers([
+    			{
+      				"lat": 55.85065,
+      				"lng": -4.240723,
+      				"picture": {
+        				"path": "google.maps.SymbolPath.CIRCLE",
+        				"width":  36,
+        				"height": 36
+      				},
+      				"infowindow": '<%= link_to("example", controller: "point_of_interest", action: "example") %>'
+    			}
+  			]);
+  			handler.bounds.extendWith(markers);
+  			handler.fitMapToBounds();
+		});
+	</script>
 	
 	</div><!-- closes wrapper_all -->
 

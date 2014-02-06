@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205164313) do
+ActiveRecord::Schema.define(version: 20140206202757) do
 
   create_table "users", force: true do |t|
     t.string   "external_user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140205164313) do
     t.string   "account_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
   end
 
 end
