@@ -3,6 +3,8 @@
 <table>
   <thead>
     <tr>
+      <th>UID</th>
+      <th>Name</th>
       <th>External user</th>
       <th>Provider</th>
       <th>Account type</th>
@@ -15,6 +17,8 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+      	<td><%= user.id %></td>
+      	<td><%= user.name %></td>
         <td><%= user.external_user_id %></td>
         <td><%= user.provider %></td>
         <td><%= user.account_type %></td>
