@@ -1,3 +1,23 @@
+	<script type='text/javascript'>
+		handler = Gmaps.build('Google');
+		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  			markers = handler.addMarkers([
+    			{
+      				"lat": 55.85065,
+      				"lng": -4.240723,
+      				"picture": {
+        				"path": "google.maps.SymbolPath.CIRCLE",
+        				"width":  36,
+        				"height": 36
+      				},
+      				"infowindow": '<%= link_to("example", controller: "point_of_interest", action: "example") %>'
+    			}
+  			]);
+  			handler.bounds.extendWith(markers);
+  			handler.fitMapToBounds();
+		});
+	</script>
+
 <div class = "summary">
 	<h1>Welcome!</h1>
 		<p>
