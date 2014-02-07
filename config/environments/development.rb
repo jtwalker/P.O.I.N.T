@@ -36,5 +36,12 @@ Point::Application.configure do
   password:             'POINTCapstone',
   authentication:       'plain',
   enable_starttls_auto: true  }
+
+  #Omnianut Facebook and Google API codes
+  ENV['FACEBOOK_APP_ID'] = '238104856372310'
+  ENV['FACEBOOK_SECRET'] = 'a29185261ebf12f1969d9a1d1b299324'
+
+  ENV['GOOGLE_CLIENT_ID'] = '892858372150-ru3kltf92ckjup1fr0bcn2vh7c77kusc.apps.googleusercontent.com'
+  ENV['GOOGLE_SECRET'] = '4qKgfUfmvOpmAUFykO1XTFHR'
   
 end

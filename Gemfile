@@ -27,6 +27,18 @@ gem 'jbuilder', '~> 1.2'
 # Google Maps
 gem 'gmaps4rails'
 
+# Omniauth
+gem 'omniauth'
+
+#Omniauth Facebook
+gem 'omniauth-facebook'
+
+#Omniauth Google
+gem 'omniauth-google-oauth2'
+
+# Used to get rid of Faraday and SSL errors
+gem 'certified'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

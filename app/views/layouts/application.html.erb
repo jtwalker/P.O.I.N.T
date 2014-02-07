@@ -23,7 +23,15 @@
 				<ul>
 				    <li><%= link_to "Rules", controller: "main", action: "rules"%></li>
 				    <li><%= link_to "Contact Us", controller: "contact_us_messages", action: "new" %></li>
-				    <li><%= link_to "Login", controller: "main", action: "underconstruction" %></li>
+				    <li>
+				    	<% if current_user %>
+    						Signed in as <strong><%= current_user.name %></strong>!
+    						<%= link_to "Sign out", signout_path, id: "sign_out" %>
+  						<% else %>
+							<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> |
+							<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+						<% end %>
+					</li>
 				</ul>
 				
 			</nav><!-- closes nav -->
@@ -35,6 +43,7 @@
 			<%= yield %>
 			
 		</div><!-- closes body -->
+		
 	<script type='text/javascript'>
 		handler = Gmaps.build('Google');
 		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
