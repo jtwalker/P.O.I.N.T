@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140206202757) do
+ActiveRecord::Schema.define(version: 20140207193515) do
+
+  create_table "point_of_interests", force: true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "summary"
+    t.text     "sponsor_info"
+    t.text     "artist_info"
+    t.integer  "user_id_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "point_of_interests", ["user_id_id"], name: "index_point_of_interests_on_user_id_id"
 
   create_table "users", force: true do |t|
     t.string   "external_user_id"

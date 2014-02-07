@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    	<link href="js-image-slider.css" rel="stylesheet" type="text/css" />
+    	<script src="js-image-slider.js" type="text/javascript"></script>
+  	</head>
+  	<body>
+		<div class = "summary">
+			<h1>Summary - About the POI</h1>
+				<% if @poi.user_id_id == nil -%>
+ 					<p>USER ID IS UNKNOWN</p>
+				<% else %>
+					<%= @poi.user_id_id %>
+				<% end %>
+				<%= @poi.summary %>
+		</div>
+		
+		<div class = "sponsor">
+			<h1>Sponsor Information</h1>
+				<%= @poi.sponsor_info %>
+		</div>
+		
+		<div class = "artist">
+			<h1>Artist</h1>
+				<%= @poi.artist_info %>
+		</div>
+		
+		<div class = "pictures">
+			<h1>Pictures - UNDERCONSTRUCTION</p>
+				<div id="slider">
+			        <%= image_tag("wolfie.png", :alt => "slide 1", height: '150', width: '150') %>
+			        <%= image_tag("wolfie.png", :alt => "slide 2", height: '200', width: '200') %>
+			        <%= image_tag("wolfie.png", :alt => "slide 3", height: '175', width: '175') %>
+			    </div>
+		</div>
+
+		<div class = "comments">
+			<h1>Comments Section - UNDERCONSTRUCTION</h1>
+		</div>
+	</body>
+</html>

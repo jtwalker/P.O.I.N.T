@@ -21,6 +21,9 @@
 			
 			<nav>
 				<ul>
+					<% if poimgr? %>
+						<li><%= link_to "POIs", controller: "point_of_interests", action: "index"%></li>
+					<% end %>
 				    <li><%= link_to "Rules", controller: "main", action: "rules"%></li>
 				    <li><%= link_to "Contact Us", controller: "contact_us_messages", action: "new" %></li>
 				    <li>

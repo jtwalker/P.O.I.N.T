@@ -1,0 +1,30 @@
+<%= form_for @poi do |f| %>
+  <p>
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude %>
+  </p>
+
+  <p>
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude %>
+  </p>
+
+  <p>
+    <%= f.label :summary %><br>
+    <%= f.text_area :summary %>
+  </p>
+ 
+  <p>
+    <%= f.label :sponsor_info %><br>
+    <%= f.text_area :sponsor_info %>
+  </p>
+
+  <p>
+  	<%= f.label :artist_info %><br>
+    <%= f.text_area :artist_info %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
