@@ -4,6 +4,7 @@ class PointOfInterestsController < ApplicationController
 
 	#GET /point_of_interest/new
 	def new
+		@poi = PointOfInterest.new
 	end
 
 	#Index that shows all the POIs in the system in a table. Will remove or block from all users later.
