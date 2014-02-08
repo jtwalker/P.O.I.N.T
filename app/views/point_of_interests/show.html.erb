@@ -30,30 +30,36 @@
 		</div>
 
 		<div class = "comments">
-			<% if current_user %>
-				<h2>Add a comment:</h2>
 
-				<%= form_for([@poi, @poi.comments.build]) do |f| %>
-				  <p>
-				    <%= f.label :body %><br />
-				    <%= f.text_area :body %>
-				  </p>
-				  <p>
-				    <%= f.submit %>
-				  </p>
+			<div class = "add_comment"
+				<% if current_user %>
+					<h2>Add a comment:</h2>
+
+					<%= form_for([@poi, @poi.comments.build]) do |f| %>
+					  <p>
+					    <%= f.label :body %><br />
+					    <%= f.text_area :body %>
+					  </p>
+
+						<%= f.hidden_field :user_id_id, :value => current_user.id %> 
+
+					  <p>
+					    <%= f.submit %>
+					  </p>
+					<% end %>
+
 				<% end %>
-
-			<% end %>
+			</div>
 
 			<h2>Comments</h2>
 			<% @poi.comments.each do |comment| %>
 				<% if comment.body  %>	
 					<p>
-				    	<strong>Comment:</strong>
+				    	<strong>Comment</strong>
 				    	<%= comment.body %>
 				 	</p>
 				  
-				  	<% if current_user.id == @poi.user_id_id %>
+				  	<% if current_user.id == comment.user_id_id %>
 						<%= link_to 'Delete Comment', [comment.point_of_interest, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
 				  	<% end %>
 				<% end %>

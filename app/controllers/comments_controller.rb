@@ -3,8 +3,7 @@ class CommentsController < ApplicationController
 	def create
 
     	@poi = PointOfInterest.find(params[:point_of_interest_id])
-    	@comment = @poi.comments.create(params[:comment].permit(:body))
-    	@comment.user_id_id = current_user.id
+    	@comment = @poi.comments.create(params[:comment].permit(:body, :user_id_id))
 
     	redirect_to point_of_interest_path(@poi)
   	end
