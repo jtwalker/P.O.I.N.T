@@ -7,11 +7,6 @@
   	<body>
 		<div class = "summary">
 			<h1>Summary - About the POI</h1>
-				<% if @poi.user_id_id == nil -%>
- 					<p>USER ID IS UNKNOWN</p>
-				<% else %>
-					<%= @poi.user_id_id %>
-				<% end %>
 				<%= @poi.summary %>
 		</div>
 		
@@ -35,7 +30,36 @@
 		</div>
 
 		<div class = "comments">
-			<h1>Comments Section - UNDERCONSTRUCTION</h1>
+			<% if current_user %>
+				<h2>Add a comment:</h2>
+
+				<%= form_for([@poi, @poi.comments.build]) do |f| %>
+				  <p>
+				    <%= f.label :body %><br />
+				    <%= f.text_area :body %>
+				  </p>
+				  <p>
+				    <%= f.submit %>
+				  </p>
+				<% end %>
+
+			<% end %>
+
+			<h2>Comments</h2>
+			<% @poi.comments.each do |comment| %>
+				<% if comment.body  %>	
+					<p>
+				    	<strong>Comment:</strong>
+				    	<%= comment.body %>
+				 	</p>
+				  
+				  	<% if current_user.id == @poi.user_id_id %>
+						<%= link_to 'Delete Comment', [comment.point_of_interest, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+				  	<% end %>
+				<% end %>
+			<% end %>
+
 		</div>
 	</body>
+
 </html>

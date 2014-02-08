@@ -6,7 +6,9 @@ Point::Application.routes.draw do
 
   resources :users
 
-  resources :point_of_interests
+  resources :point_of_interests do
+    resources :comments
+  end
 
   get "point_of_interest/example"
   get "main/home"

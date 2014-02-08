@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207193515) do
+ActiveRecord::Schema.define(version: 20140208020621) do
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id_id"
+    t.integer  "point_of_interest_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["point_of_interest_id"], name: "index_comments_on_point_of_interest_id"
+  add_index "comments", ["user_id_id"], name: "index_comments_on_user_id_id"
 
   create_table "point_of_interests", force: true do |t|
     t.float    "latitude"
