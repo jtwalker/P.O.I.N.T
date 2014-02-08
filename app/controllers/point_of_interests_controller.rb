@@ -20,13 +20,11 @@ class PointOfInterestsController < ApplicationController
 		@poi.user_id_id = current_user.id
 		
 
-		if ( current_user || @poi.save)
+		if ( @poi.save )
     		redirect_to @poi
   		else
     		render 'new'
   		end
-
-		redirect_to @poi
 	end
 
 	# GET /point_of_interest/:id(.:format) point_of_interests@show
