@@ -11,13 +11,15 @@
   </tr>
  
   <% @pois.each do |poi| %>
-    <tr>
-      <td><%= poi.user_id_id %></td>
-      <td><%= poi.latitude %></td>
-      <td><%= poi.longitude %></td>
-      <td><%= link_to 'Show', poi %></td>
-      <td><%= link_to 'Edit', edit_point_of_interest_path(poi) %></td>
-      <td><%= link_to 'Destroy', point_of_interest_path(poi), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <% if poi.user_id_id == current_user.id %>
+      <tr>
+        <td><%= poi.user_id_id %></td>
+        <td><%= poi.latitude %></td>
+        <td><%= poi.longitude %></td>
+        <td><%= link_to 'Show', poi %></td>
+        <td><%= link_to 'Edit', edit_point_of_interest_path(poi) %></td>
+        <td><%= link_to 'Destroy', point_of_interest_path(poi), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
