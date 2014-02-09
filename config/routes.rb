@@ -14,6 +14,10 @@ Point::Application.routes.draw do
     resources :comments
   end
 
+  #admin
+  get 'admin/index'
+  get 'admin' => redirect("admin/index")
+
   #main
   get "main/home"
   get "main/rules"

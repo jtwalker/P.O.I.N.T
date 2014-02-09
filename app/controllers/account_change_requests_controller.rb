@@ -23,6 +23,16 @@ class AccountChangeRequestsController < ApplicationController
   		end
 	end
 
+	def destroy
+		@acr = AccountChangeRequest.find(params[:id])
+    	@acr.destroy
+
+    	respond_to do |format|
+      		format.html { redirect_to root_url }
+      		format.json { head :no_content }
+    	end
+	end
+
 	private
   	def post_params
     	params.require(:account_change_request).permit(:reason_message, :account_type)

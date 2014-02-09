@@ -16,8 +16,19 @@ class ApplicationController < ActionController::Base
 
   	end
 
+    helper_method :admin?
+    protected
+    def admin?
+      if ( current_user && current_user.account_type == "ADMIN" )
+        true
+      else
+        false
+      end
+
+    end
+
   	def authorize
-    	unless poimgr?
+    	unless poimgr? || admin?
       		redirect_to "/"
       		false
     	end

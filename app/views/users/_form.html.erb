@@ -17,8 +17,12 @@
   </div>
 
   <div class="field">
-    <%= f.label :account_type %><br>
-    <%= f.text_field :account_type %>
+    <%= f.radio_button :account_type, 'STANDARD' %> 
+    <%= label :account_type, 'Standard' %>
+    <%= f.radio_button :account_type, 'POIMGR' %> 
+    <%= label :account_type, 'Point of Interest Manager' %>
+    <%= f.radio_button :account_type, 'ADMIN'%> 
+    <%= label :account_type, 'Administrator' %>
   </div>
 
   <div class="field">

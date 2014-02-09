@@ -26,6 +26,9 @@
 					<% end %>
 				    <li><%= link_to "Rules", controller: "main", action: "rules"%></li>
 				    <li><%= link_to "Contact Us", controller: "contact_us_messages", action: "new" %></li>
+				    <% if admin? %>
+						<li><%= link_to "Admin", controller: "admin", action: "index"%></li>
+					<% end %>
 				    <% if current_user %>
 				    	<li><%= link_to "Profile", user_path(current_user) %></li>
 				    <% end %>

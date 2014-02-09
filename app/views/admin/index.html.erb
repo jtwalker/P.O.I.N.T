@@ -1,0 +1,31 @@
+<h1>Listing users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>User ID</th>
+      <th>Reason</th>
+      <th>To Account type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @acrs.each do |acr| %>
+      <tr>
+      	<td><%= acr.id %></td>
+      	<td><%= get_user(acr.user_id).name %></td>
+        <td><%= acr.user_id %></td>
+        <td><%= acr.reason_message %></td>
+        <td><%= acr.account_type %></td>
+        <td><%= link_to 'Show User', user_path(get_user(acr.user_id)) %></td>
+        <td><%= link_to 'Accept Request', edit_user_path(get_user(acr.user_id) ) %></td>
+        <td><%= link_to 'Deny Requst', root_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
