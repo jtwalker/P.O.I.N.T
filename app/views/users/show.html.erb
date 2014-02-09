@@ -18,7 +18,8 @@
 <p>
   <strong>Account type:</strong>
   <%= @user.account_type %>
+  <%= link_to 'Request Account Type Change', controller: "account_change_requests", action: "new"%>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Home', root_url %>

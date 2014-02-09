@@ -2,10 +2,8 @@
 
 one:
   user_id: 
-  point_of_interest_id: 
-  body: MyText
+  reason_message: MyText
 
 two:
   user_id: 
-  point_of_interest_id: 
-  body: MyText
+  reason_message: MyText

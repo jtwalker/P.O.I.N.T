@@ -7,6 +7,7 @@ Point::Application.routes.draw do
 
   #Users
   resources :users
+  resources :account_change_requests, :only => [:new, :create]
 
   #POIs and Comements
   resources :point_of_interests do

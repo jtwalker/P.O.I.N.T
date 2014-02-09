@@ -17,7 +17,7 @@ class PointOfInterestsController < ApplicationController
 		#render text: params[:point_of_interest].inspect
 
 		@poi = PointOfInterest.new(post_params)
-		@poi.user_id_id = current_user.id
+		@poi.user_id = current_user.id
 		
 
 		if ( @poi.save )

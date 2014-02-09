@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140208055144) do
+ActiveRecord::Schema.define(version: 20140209034027) do
+
+  create_table "account_change_requests", force: true do |t|
+    t.integer  "user_id"
+    t.text     "reason_message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "account_type"
+  end
+
+  add_index "account_change_requests", ["user_id"], name: "index_account_change_requests_on_user_id"
 
   create_table "comments", force: true do |t|
-    t.integer  "user_id_id"
+    t.integer  "user_id"
     t.integer  "point_of_interest_id"
     t.text     "body"
     t.datetime "created_at"
@@ -22,7 +32,7 @@ ActiveRecord::Schema.define(version: 20140208055144) do
   end
 
   add_index "comments", ["point_of_interest_id"], name: "index_comments_on_point_of_interest_id"
-  add_index "comments", ["user_id_id"], name: "index_comments_on_user_id_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "point_of_interests", force: true do |t|
     t.float    "latitude"
@@ -30,12 +40,12 @@ ActiveRecord::Schema.define(version: 20140208055144) do
     t.text     "summary"
     t.text     "sponsor_info"
     t.text     "artist_info"
-    t.integer  "user_id_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "point_of_interests", ["user_id_id"], name: "index_point_of_interests_on_user_id_id"
+  add_index "point_of_interests", ["user_id"], name: "index_point_of_interests_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "uid"

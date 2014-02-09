@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+     @user = User.find(params[:id])
+
+     if ( @user == nil || current_user == nil || @user.id != current_user.id)
+      redirect_to root_url
+     end
   end
 
   # GET /users/new
@@ -19,6 +24,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
+    
+    if ( @user == nil || current_user == nil || @user.id != current_user.id)
+      redirect_to root_url
+     end
   end
 
   # POST /users
@@ -54,6 +64,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }

@@ -1,0 +1,32 @@
+<h1>Account Change Request</h1>
+
+<%= form_for @acr do |f| %>
+
+  <% if @acr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@acr.errors.count, "error") %> prohibited this account change request from being saved:</h2>
+
+      <ul>
+      <% @acr.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.radio_button :account_type, 'STANDARD' %> 
+	<%= label :account_type, 'Standard' %>
+	<%= f.radio_button :account_type, 'POIMGR' %> 
+	<%= label :account_type, 'Point of Interest Manager' %>
+	<%= f.radio_button :account_type, 'ADMIN'%> 
+	<%= label :account_type, 'Administrator' %>
+
+  <p>
+    <%= f.label :reason_message %><br>
+    <%= f.text_area :reason_message %>
+  </p>
+ 
+  <p>
+    <%= f.submit "Sumbit Account Type Change Request"%>
+  </p>
+<% end %>
