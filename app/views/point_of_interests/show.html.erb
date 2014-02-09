@@ -55,7 +55,7 @@
 			<% @poi.comments.each do |comment| %>
 				<% if comment.body  %>	
 					<p>
-				    	<strong>Comment</strong>
+				    	<strong><%= get_user(comment.user_id_id).name %></strong>
 				    	<%= comment.body %>
 				 	</p>
 				  

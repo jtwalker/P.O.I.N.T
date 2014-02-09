@@ -29,4 +29,10 @@ class ApplicationController < ActionController::Base
 	end
 	helper_method :current_user
 
+  def get_user(user_id)
+    user = User.find(user_id)
+    return user
+  end
+  helper_method :get_user
+
 end

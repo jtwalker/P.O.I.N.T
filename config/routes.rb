@@ -1,22 +1,25 @@
 Point::Application.routes.draw do
   
+  #Authentication
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
 
+  #Users
   resources :users
 
+  #POIs and Comements
   resources :point_of_interests do
     resources :comments
   end
 
-  get "point_of_interest/example"
+  #main
   get "main/home"
   get "main/rules"
   get "main/underconstruction"
   
-  resources :contact_us_messages, :only => [:new, :create]
-  get "contact_us_messages/confirmation"
+  #Contact us
+  resources :contact_us_messages, :only => [:new, :create, :confirmation]
   get "/contact_us_messages" => redirect("/contact_us_messages/new")
   
   root "main#home"
