@@ -40,7 +40,7 @@ class PointOfInterestsController < ApplicationController
 	def update
   		@poi = PointOfInterest.find(params[:id])
  
-  		if @poi.update(params[:post].permit(:latitude, :longitude, :summary, :sponsor_info, :artist_info))
+  		if @poi.update(params[:point_of_interest].permit(:latitude, :longitude, :summary, :sponsor_info, :artist_info))
     		redirect_to @poi
   		else
     		render 'edit'

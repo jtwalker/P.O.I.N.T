@@ -1,28 +1,41 @@
 <%= form_for @poi do |f| %>
-  <p>
-    <%= f.label :latitude %><br>
-    <%= f.text_field :latitude %>
-  </p>
+	<head>
+    	<link href="js-image-slider.css" rel="stylesheet" type="text/css" />
+    	<script src="js-image-slider.js" type="text/javascript"></script>
+  	</head>
+  	<body>
+  		  <p>
+    		<%= f.label :latitude %><br>
+    		<%= f.text_field :latitude %>
+  		</p>
 
-  <p>
-    <%= f.label :longitude %><br>
-    <%= f.text_field :longitude %>
-  </p>
-
-  <p>
-    <%= f.label :summary %><br>
-    <%= f.text_area :summary %>
-  </p>
- 
-  <p>
-    <%= f.label :sponsor_info %><br>
-    <%= f.text_area :sponsor_info %>
-  </p>
-
-  <p>
-  	<%= f.label :artist_info %><br>
-    <%= f.text_area :artist_info %>
-  </p>
+  		<p>
+    		<%= f.label :longitude %><br>
+    		<%= f.text_field :longitude %>
+  		</p>
+  		
+		<div class = "summary">
+			<h1>Summary - About the POI</h1>
+				<%= f.text_area :summary %>
+		</div>
+		
+		<div class = "sponsor">
+			<h1>Sponsor Information</h1>			
+    		<%= f.text_area :sponsor_info %>
+		</div>
+		
+		<div class = "artist">
+			<h1>Artist</h1>
+    		<%= f.text_area :artist_info %>
+		</div>
+		
+		<div class = "pictures">
+			<h1>Pictures - UNDERCONSTRUCTION</p>
+				<%= image_tag("wolfie.png", :alt => "slide 1", height: '150', width: '150') %>
+		        <%= image_tag("wolfie.png", :alt => "slide 2", height: '200', width: '200') %>
+		        <%= image_tag("wolfie.png", :alt => "slide 3", height: '175', width: '175') %>
+		</div>
+	</body>
  
   <p>
     <%= f.submit %>

@@ -1,21 +1,24 @@
-<h1>Listing All POIs</h1>
+<h1>Your Current Points of Interest:</h1>
  
-<table>
+<table rules="all">
   <tr>
-    <th>User Id</th>
+    <th>POI ID</th>
     <th>Latitude</th>
     <th>Longitude</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Summary</th>
+    <th>Artist Information</th>
+    <th>Sponsor Information</th>
   </tr>
  
   <% @pois.each do |poi| %>
     <% if poi.user_id == current_user.id %>
       <tr>
-        <td><%= poi.user_id %></td>
+        <td><%= poi.id %></td>
         <td><%= poi.latitude %></td>
         <td><%= poi.longitude %></td>
+        <td><%=h truncate(poi.summary, :length => 50) %></td>
+        <td><%=h truncate(poi.artist_info, :length => 50) %></td>
+        <td><%=h truncate(poi.sponsor_info, :length => 50) %></td>
         <td><%= link_to 'Show', poi %></td>
         <td><%= link_to 'Edit', edit_point_of_interest_path(poi) %></td>
         <td><%= link_to 'Destroy', point_of_interest_path(poi), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,3 +26,6 @@
     <% end %>
   <% end %>
 </table>
+
+<br><hr>
+<%= link_to 'Add New Point of Interest', new_point_of_interest_path %>
