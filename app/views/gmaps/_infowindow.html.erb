@@ -1,0 +1,11 @@
+<div class="image" style="display:inline-block" align="top">
+	<%= image_tag("wolfie.png", :alt => "slide 1", height: '50', width: '50') %>
+</div>
+<div class="text" style="display:inline-block">
+	<h4>Summary</h4>
+	<%= gmappoi.summary %>
+</div>
+<hr>
+<div class="link">
+	<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>
+</div>
