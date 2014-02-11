@@ -5,47 +5,49 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<%= stylesheet_link_tag "point_app" %>
+		<%= stylesheet_link_tag "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
   		<%= csrf_meta_tags %>
 		
 		<title>POINT</title>
 	</head>
 	
-	<div class = "wrapper_all">
+	<div class = "container-fluid">
 		
-		<header>
-			<div class = "logo">
-				<%= link_to( image_tag("POINT-Logo-1.jpg"), "/") %>
-			</div>
+		<nav class="navbar">
+  			<div class="navbar-inner">
+  				<div class="container">
+					<a class="brand"><%= link_to( image_tag("POINT-Logo-1.jpg"), "/") %></a>
 			
-			<nav>
-				<ul>
-					<% if poimgr? %>
-						<li><%= link_to "POIs", controller: "point_of_interests", action: "index"%></li>
-					<% end %>
-				    <li><%= link_to "Rules", controller: "main", action: "rules"%></li>
-				    <li><%= link_to "Contact Us", controller: "contact_us_messages", action: "new" %></li>
-				    <% if admin? %>
-						<li><%= link_to "Admin", controller: "admin", action: "index"%></li>
-					<% end %>
-				    <% if current_user %>
-				    	<li><%= link_to "Profile", user_path(current_user) %></li>
-				    <% end %>
-				    <li>
-				    	<% if current_user %>
-    						Signed in as <strong><%= current_user.name %></strong>!
-    						<%= link_to "Sign out", signout_path, id: "sign_out" %>
-  						<% else %>
-							<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> |
-							<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+					<ul class = "nav pull-right">
+						<% if poimgr? %>
+							<li class = "divider-vertical"><%= link_to "POIs", controller: "point_of_interests", action: "index"%></li>
 						<% end %>
-					</li>
-				</ul>
+						
+						<li class = "divider-vertical"><%= link_to "Rules", controller: "main", action: "rules"%></li>
+						<li class = "divider-vertical"><%= link_to "Contact Us", controller: "contact_us_messages", action: "new" %></li>
+						
+						<% if admin? %>
+							<li class="visible-desktop divider-vertical"><%= link_to "Admin", controller: "admin", action: "index"%></li>
+						<% end %>
+					    
+					    <% if current_user %>
+					    	<li class = "divider-vertical"><%= link_to "Profile", user_path(current_user) %></li>
+					    <% end %>
+					    
+					    <% if current_user %>
+		    				<li class = "divider-vertical">Signed in as <strong><%= current_user.name %></strong>!</li>
+		    				<li class = "divider-vertical"><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+		  				<% else %>
+		  					<li class = "divider-vertical"><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> </li>
+							<li class = "divider-vertical"><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %> </li>
+						<% end %>
+
+					</ul>
+				</div>
+			</div>
 				
-			</nav><!-- closes nav -->
-			
-		</header><!-- closes header -->
+		</nav><!-- closes nav -->
 		
 		<div class="body">
 			
@@ -53,14 +55,14 @@
 			
 		</div><!-- closes body -->
 		
-	<script type='text/javascript'>
-		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  			markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  			handler.bounds.extendWith(markers);
-  			handler.fitMapToBounds();
-		});
-	</script>
+		<script type='text/javascript'>
+			handler = Gmaps.build('Google');
+			handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+	  			markers = handler.addMarkers(<%=raw @hash.to_json %>);
+	  			handler.bounds.extendWith(markers);
+	  			handler.fitMapToBounds();
+			});
+		</script>
 	
 	</div><!-- closes wrapper_all -->
 
