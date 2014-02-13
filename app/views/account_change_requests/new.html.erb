@@ -1,6 +1,6 @@
 <h1>Account Change Request</h1>
 
-<%= form_for @acr do |f| %>
+<%= form_for @acr, :html => { :class => "form-horizontal" } do |f| %>
 
   <% if @acr.errors.any? %>
     <div id="error_explanation">
@@ -14,6 +14,8 @@
     </div>
   <% end %>
 
+  <fieldset>
+
 	<%= f.radio_button :account_type, 'STANDARD' %> 
 	<%= label :account_type, 'Standard' %>
 	<%= f.radio_button :account_type, 'POIMGR' %> 
@@ -26,7 +28,7 @@
     <%= f.text_area :reason_message %>
   </p>
  
-  <p>
-    <%= f.submit "Sumbit Account Type Change Request"%>
-  </p>
+  <div class="form-actions">
+    <%= f.submit "Submit Account Type Change Request"%>
+  </div>
 <% end %>

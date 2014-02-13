@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if ( current_user == nil || current_user.account_type != 'ADMIN')
+      redirect_to root_url
+    end
+
     @users = User.all
   end
 
@@ -19,6 +23,10 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    if ( current_user == nil || current_user.account_type != 'ADMIN')
+      redirect_to root_url
+    end
+    
     @user = User.new
   end
 

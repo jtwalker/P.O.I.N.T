@@ -6,7 +6,12 @@
 </p>
 
 <p>
-  <strong>UID</strong>
+  <strong>User ID:</strong>
+  <%= @user.id %>
+</p>
+
+<p>
+  <strong>UID:</strong>
   <%= @user.uid %>
 </p>
 
@@ -18,8 +23,9 @@
 <p>
   <strong>Account type:</strong>
   <%= @user.account_type %>
-  <%= link_to 'Request Account Type Change', controller: "account_change_requests", action: "new"%>
+  <% if @user == current_user %>
+    <p>  
+      <%= link_to 'Request Account Type Change', controller: "account_change_requests", action: "new"%>
+    </p>
+  <% end %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Home', root_url %>

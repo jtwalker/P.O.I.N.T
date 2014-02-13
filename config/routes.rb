@@ -17,6 +17,8 @@ Point::Application.routes.draw do
   #admin
   get 'admin/index'
   get 'admin' => redirect("admin/index")
+  get 'admin/accept_account_change_request'
+  get 'admin/deny_account_change_request'
 
   #main
   get "main/home"
@@ -24,7 +26,8 @@ Point::Application.routes.draw do
   get "main/underconstruction"
   
   #Contact us
-  resources :contact_us_messages, :only => [:new, :create, :confirmation]
+  resources :contact_us_messages, :only => [:new, :create]
+  get "contact_us_messages/confirmation"
   get "/contact_us_messages" => redirect("/contact_us_messages/new")
   
   root "main#home"
