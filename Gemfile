@@ -19,9 +19,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Twitter Bootstrap styling
-gem 'therubyracer'
-gem 'less-rails'
-gem 'twitter-bootstrap-rails'
+# gem 'therubyracer'
+# gem 'less-rails'
+# gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
