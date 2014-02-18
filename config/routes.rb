@@ -1,5 +1,7 @@
 Point::Application.routes.draw do
   
+  resources :pictures
+
   #Authentication
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')

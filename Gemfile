@@ -45,6 +45,9 @@ gem 'omniauth-google-oauth2'
 # Used to get rid of Faraday and SSL errors
 gem 'certified'
 
+# Paperclip
+gem "paperclip", "~> 3.5.3"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

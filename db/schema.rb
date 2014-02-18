@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140209034027) do
+ActiveRecord::Schema.define(version: 20140218162030) do
 
   create_table "account_change_requests", force: true do |t|
     t.integer  "user_id"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20140209034027) do
 
   add_index "comments", ["point_of_interest_id"], name: "index_comments_on_point_of_interest_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+
+  create_table "pictures", force: true do |t|
+    t.integer  "user"
+    t.integer  "poi"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "point_of_interests", force: true do |t|
     t.float    "latitude"
