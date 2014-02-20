@@ -4,16 +4,14 @@
     	<script src="js-image-slider.js" type="text/javascript"></script>
   	</head>
   	<body>
-  		  <p>
-    		<%= f.label :latitude %><br>
-    		<%= f.text_field :latitude %>
-  		</p>
-
-  		<p>
-    		<%= f.label :longitude %><br>
-    		<%= f.text_field :longitude %>
-  		</p>
-  		
+  		<div class ="address">
+	  		<p>
+	    		<b>Latitude:</b>
+	    		<%= f.text_field :latitude %><br>
+	    		<b>Longitude:</b>
+	    		<%= f.text_field :longitude %>
+	    	</p>
+	    </div>
 		<div class = "summary">
 			<h1>Summary - About the POI</h1>
 				<%= f.text_area :summary %>
