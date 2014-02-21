@@ -14,6 +14,7 @@ Point::Application.routes.draw do
   #POIs and Comements
   resources :point_of_interests do
     resources :comments
+    resources :pictures
   end
 
   #admin

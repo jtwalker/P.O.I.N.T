@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140220153709) do
+ActiveRecord::Schema.define(version: 20140221130706) do
 
   create_table "account_change_requests", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140220153709) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "pictures", force: true do |t|
+    t.integer  "picture_id",         null: false
     t.integer  "user"
     t.integer  "poi"
     t.datetime "created_at"

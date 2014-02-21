@@ -2,6 +2,11 @@ class Picture < ActiveRecord::Base
   belongs_to :user
   belongs_to :point_of_interest
   
+  has_one :user
+  has_one :point_of_interest
+  
+  accepts_nested_attributes_for :user, :point_of_interest, :allow_destroy => true
+  
   has_attached_file :photo, styles: {
     thumb: '100x100>',
     square: '200x200#',

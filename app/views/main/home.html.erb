@@ -19,6 +19,9 @@
 	</div>
 </div>
 
-<div class = "pictures">
+<div class = "pictures" align="center">
 	<h2>Recently Added Pictures</h2>
+	<% Picture.all.reverse_each do |picture| %>
+		<%= image_tag picture.photo.url(:thumb) %>
+	<% end %>
 </div>

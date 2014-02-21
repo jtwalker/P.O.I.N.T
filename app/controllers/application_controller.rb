@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   	# For APIs, you may want to use :null_session instead.
   	protect_from_forgery with: :exception
 
+    #@source_address = "London"
+    #@destination_address = "Mancester"
 
   	helper_method :poimgr?  
   	
