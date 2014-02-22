@@ -26,12 +26,14 @@
 		</div>
 		
 		<div class = "pictures">
-			<h1>Pictures - UNDERCONSTRUCTION</p>
-				<div id="slider">
-			        <%= image_tag("wolfie.png", :alt => "slide 1", height: '150', width: '150') %>
-			        <%= image_tag("wolfie.png", :alt => "slide 2", height: '200', width: '200') %>
-			        <%= image_tag("wolfie.png", :alt => "slide 3", height: '175', width: '175') %>
-			    </div>
+			<h1>Main Picture</h1>
+				<% Picture.where(point_of_interest_id: @poi.id, main_image: true).each do |picture| %>
+					<%= image_tag picture.photo.url(:medium) %>
+				<% end %>
+			<h1>Other Pictures</h1>
+				<% Picture.where(point_of_interest_id: @poi.id, main_image: false).each do |picture| %>
+					<%= image_tag picture.photo.url(:thumnb) %>
+				<% end %>				
 		</div>
 
 		<div class = "comments">

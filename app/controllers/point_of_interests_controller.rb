@@ -15,10 +15,6 @@ class PointOfInterestsController < ApplicationController
 	# Handles creating the POI
 	def create
 		#render text: params[:point_of_interest].inspect
-		
-		# Early attempts at creating the picture at the same time as the POI. This is actually the way I've seen most recommended but I'm apparently I'm missing something here.
-		#params = { point: {latitude: :latitude, longitude: :longitude, summary: :summary, artist_info: :artist_info, sponsor_info: :sponsor_info, picture_attributes: {photo: :photo, user: current_user.id, poi: :id}}}
-    	#@poi = PointOfInterest.new(params[:point])
 
 		@poi = PointOfInterest.new(post_params)
 		@poi.user_id = current_user.id
@@ -27,18 +23,14 @@ class PointOfInterestsController < ApplicationController
 		@picture.photo = params[:point_of_interest][:photo]
 		#@picture.poi_id = @poi.id
 		@picture.user_id = current_user.id
+		@picture.main_image = true
 
 		#default
 		@picture.picture_id = 1
-
-
-		# This one will say that it cannot find the @poi.id and that is because the POI doesn't exist yet. You will have to save before doing this one.
-		# This is the one giving the picture_id error.
-		# pic = Picture.create(attributes = {:user => User.find(current_user.id), photo: :photo, :poi => PointOfInterest.find(@poi.id)})
 		
 
 		if ( @poi.save )
-			@picture.poi_id = @poi.id
+			@picture.point_of_interest_id = @poi.id
 
 			if (@picture.save)
     			redirect_to @poi

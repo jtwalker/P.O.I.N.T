@@ -1,5 +1,7 @@
 <div class="image" align="top">
-	<%= image_tag("wolfie.png", :alt => "slide 1", height: '50', width: '50') %>
+	<% Picture.where(point_of_interest_id: gmappoi.id, main_image: true).each do |picture| %>
+		<%= image_tag picture.photo.url(:thumb) %>
+	<% end %>
 </div>
 <div class="text">
 	<h4>Address</h4>
