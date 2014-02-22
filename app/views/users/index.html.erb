@@ -8,6 +8,7 @@
       <th>UID</th>
       <th>Provider</th>
       <th>Account type</th>
+      <th>Email</th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,6 +23,7 @@
         <td><%= user.uid %></td>
         <td><%= user.provider %></td>
         <td><%= user.account_type %></td>
+        <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
