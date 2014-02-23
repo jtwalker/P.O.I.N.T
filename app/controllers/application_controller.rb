@@ -48,4 +48,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :get_user
 
+  def get_picture(picture_id)
+    picture = Picture.find(picture_id)
+    return picture
+  end
+  helper_method :get_picture
+
 end

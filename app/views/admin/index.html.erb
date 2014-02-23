@@ -34,3 +34,31 @@
 </table>
 
 <HR>
+
+<table class="table table-striped">
+  <h2>Pending Picture Uploads</h2>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User ID</th>
+      <th>Picture ID</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ppus.each do |ppu| %>
+      <tr>
+        <td><%= ppu.id %></td>
+        <td><%= ppu.user_id %></td>
+        <td><%= ppu.picture_id %></td>
+        <td><%= link_to 'Show User', user_path(get_user(ppu.user_id)) %></td>
+        <td><%= link_to 'Show Picture', picture_path(get_picture(ppu.picture_id)) %></td>
+        <td><%= link_to 'Accept Picture', admin_accept_picture_upload_path(:ppu => ppu) %></td>
+        <td><%= link_to 'Deny Picture', admin_deny_picture_upload_path(:ppu => ppu) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

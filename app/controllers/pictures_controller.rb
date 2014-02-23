@@ -25,6 +25,7 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
+
     # This is only here to facilitate the creation of new Pictures since this attribute has to be filled in and I don't have 
     # the user fill it in.
     @picture.picture_id = 1

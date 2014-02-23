@@ -1,0 +1,2 @@
+module PendingPictureUploadsHelper
+end

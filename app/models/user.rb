@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
     has_many :pointofinterests, :class_name => 'PointOfInterest', dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :accountchangerequests, :class_name => 'AccountChangeRequest', dependent: :destroy
+    has_many :pendingpictureuploads, :class_name => 'PendingPictureUpload', dependent: :destroy
 
 	def self.from_omniauth(auth)
         where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

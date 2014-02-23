@@ -12,7 +12,7 @@ class AccountChangeRequestsController < ApplicationController
 			redirect_to root_url
 		end
 
-		@acr = AccountChangeRequest.new(post_params)
+		@acr = AccountChangeRequest.new(acr_params)
 		@acr.user_id = current_user.id
 		
 
@@ -34,7 +34,7 @@ class AccountChangeRequestsController < ApplicationController
 	end
 
 	private
-  	def post_params
+  	def acr_params
     	params.require(:account_change_request).permit(:reason_message, :account_type)
   	end
 

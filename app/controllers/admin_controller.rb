@@ -2,6 +2,7 @@ class AdminController < ApplicationController
 
 	def index
 		@acrs = AccountChangeRequest.all
+		@ppus = PendingPictureUpload.all
 	end
 
 	def accept_account_change_request
@@ -32,6 +33,39 @@ class AdminController < ApplicationController
 			AccountTypeChangeMailer.send_denied_account_change_request_message(user, user.account_type, acr.account_type).deliver
 		else 
 			flash[:notice] = 'Could not deny account change'
+		end
+
+		redirect_to action: "index"
+		
+	end
+
+	#Pending Picture Handlers
+
+	def accept_pending_picture_upload
+		ppu = PendingPictureUpload.find(params[:ppu])
+		picture = get_picture(ppu.picture_id)
+
+		if picture.update(is_allowed: true)
+			flash[:notice] = 'Picture was successfully allowed'
+		else
+			flash[:alert] = 'Picture was not accepted properly'
+		end
+
+		ppu.destroy
+
+		redirect_to action: "index"
+
+	end
+
+	def deny_pending_picture_upload
+		
+		ppu = PendingPictureUpload.find(params[:ppu])
+		picture = get_picture(ppu.picture_id)
+
+		if ppu.destroy
+			flash[:notice] = 'Pending Picture Upload denied'
+		else 
+			flash[:notice] = 'Could not deny pending picture'
 		end
 
 		redirect_to action: "index"
