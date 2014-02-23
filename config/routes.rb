@@ -12,7 +12,7 @@ Point::Application.routes.draw do
   resources :account_change_requests, :only => [:new, :create]
 
   #POIs and Comements
-  resources :point_of_interests do
+  resources :point_of_interests, :shallow => true do
     resources :comments
     resources :pictures
   end

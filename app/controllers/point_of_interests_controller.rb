@@ -32,6 +32,8 @@ class PointOfInterestsController < ApplicationController
 		if ( @poi.save )
 			@picture.point_of_interest_id = @poi.id
 
+			
+
 			if (@picture.save)
     			redirect_to @poi
     		else
