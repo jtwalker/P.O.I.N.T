@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  
+  <%= f.hidden_field :point_of_interest_id, :value => @poi.id %> 
+
   <div class="field">
   	<%= f.label :photo %>
     <%= f.file_field :photo %>

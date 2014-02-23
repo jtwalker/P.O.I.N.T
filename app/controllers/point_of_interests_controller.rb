@@ -21,7 +21,6 @@ class PointOfInterestsController < ApplicationController
 
 		@picture = Picture.new
 		@picture.photo = params[:point_of_interest][:photo]
-		#@picture.poi_id = @poi.id
 		@picture.user_id = current_user.id
 		@picture.main_image = true
 

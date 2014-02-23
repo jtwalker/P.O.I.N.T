@@ -22,6 +22,8 @@
 <div class = "pictures" align="center">
 	<h2>Recently Added Pictures</h2>
 	<% Picture.all.reverse_each do |picture| %>
-		<%= image_tag picture.photo.url(:thumb) %>
+		<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
+			<%= image_tag picture.photo.url(:thumb) %>
+		<% end %>
 	<% end %>
 </div>

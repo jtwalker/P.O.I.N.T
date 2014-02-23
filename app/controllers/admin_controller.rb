@@ -13,11 +13,10 @@ class AdminController < ApplicationController
 		if user.update(account_type: acr.account_type)
 			flash[:notice] = 'User was successfully updated to account type: ' + acr.account_type
 			AccountTypeChangeMailer.send_accepted_account_change_request_message(user, previous_account_type, user.account_type).deliver
+			acr.destroy
 		else
 			flash[:alert] = 'User was not updated to account type: ' + acr.account_type
 		end
-
-		acr.destroy
 
 		redirect_to action: "index"
 
@@ -41,28 +40,28 @@ class AdminController < ApplicationController
 
 	#Pending Picture Handlers
 
+	# If accepted, the ppu will be destroyed only. That means that the picture stays in the db
 	def accept_pending_picture_upload
 		ppu = PendingPictureUpload.find(params[:ppu])
-		picture = get_picture(ppu.picture_id)
 
-		if picture.update(is_allowed: true)
+		if ppu.destroy
 			flash[:notice] = 'Picture was successfully allowed'
+			ppu.destroy
 		else
 			flash[:alert] = 'Picture was not accepted properly'
 		end
-
-		ppu.destroy
 
 		redirect_to action: "index"
 
 	end
 
+	# If denied, the ppu and picture will be destroyed.
 	def deny_pending_picture_upload
 		
 		ppu = PendingPictureUpload.find(params[:ppu])
 		picture = get_picture(ppu.picture_id)
 
-		if ppu.destroy
+		if ( ppu.destroy && picture.destroy )
 			flash[:notice] = 'Pending Picture Upload denied'
 		else 
 			flash[:notice] = 'Could not deny pending picture'

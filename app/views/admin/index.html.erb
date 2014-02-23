@@ -56,8 +56,8 @@
         <td><%= ppu.picture_id %></td>
         <td><%= link_to 'Show User', user_path(get_user(ppu.user_id)) %></td>
         <td><%= link_to 'Show Picture', picture_path(get_picture(ppu.picture_id)) %></td>
-        <td><%= link_to 'Accept Picture', admin_accept_picture_upload_path(:ppu => ppu) %></td>
-        <td><%= link_to 'Deny Picture', admin_deny_picture_upload_path(:ppu => ppu) %></td>
+        <td><%= link_to 'Accept Picture', admin_accept_pending_picture_upload_path(:ppu => ppu) %></td>
+        <td><%= link_to 'Deny Picture', admin_deny_pending_picture_upload_path(:ppu => ppu) %></td>
       </tr>
     <% end %>
   </tbody>

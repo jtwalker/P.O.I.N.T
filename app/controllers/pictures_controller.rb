@@ -14,7 +14,10 @@ class PicturesController < ApplicationController
 
   # GET /pictures/new
   def new
+
     @picture = Picture.new
+    @poi = PointOfInterest.find(params[:poi])
+
   end
 
   # GET /pictures/1/edit
@@ -26,14 +29,32 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
 
+    @poi = PointOfInterest.find(params[:picture][:point_of_interest_id])
+
+    @picture.point_of_interest_id = @poi.id
+    @picture.user_id = current_user.id
+    @picture.main_image = false
+
     # This is only here to facilitate the creation of new Pictures since this attribute has to be filled in and I don't have 
     # the user fill it in.
     @picture.picture_id = 1
 
+    #Create Pending Picture Data
+    @ppu = PendingPictureUpload.new
+    @ppu.user_id = current_user.id
+
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @picture }
+
+        @ppu.picture_id = @picture.id
+
+        if @ppu.save
+
+          format.html { redirect_to @poi, notice: 'Picture was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @picture }
+        
+        end
+
       else
         format.html { render action: 'new' }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
@@ -73,6 +94,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:photo, :user, :poi, :picture_id)
+      params.require(:picture).permit(:photo, :user_id, :point_of_interest_id, :picture_id)
     end
 end

@@ -34,11 +34,13 @@
 
 			<h1>Other Pictures</h1>
 				<% Picture.where(point_of_interest_id: @poi.id, main_image: false).each do |picture| %>
-					<%= image_tag picture.photo.url(:thumnb) %>
+					<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
+						<%= image_tag picture.photo.url(:thumb) %>
+					<% end %>
 				<% end %>
 
 			<% if current_user %>
-				<%= link_to 'Upload Your Own Picture', controller: "pictures", action: "new" %>
+				<%= link_to 'Upload Your Own Picture', new_picture_path(:poi => @poi.id)  %>
 			<% end %>
 
 		</div>
