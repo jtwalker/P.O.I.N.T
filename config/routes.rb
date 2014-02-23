@@ -22,6 +22,8 @@ Point::Application.routes.draw do
   get 'admin' => redirect("admin/index")
   get 'admin/accept_account_change_request'
   get 'admin/deny_account_change_request'
+  get 'admin/accept_pending_picture_upload'
+  get 'admin/deny_pending_picture_upload'
 
   #main
   get "main/home"
