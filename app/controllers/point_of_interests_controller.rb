@@ -19,19 +19,27 @@ class PointOfInterestsController < ApplicationController
 		@poi = PointOfInterest.new(post_params)
 		@poi.user_id = current_user.id
 
-		@picture = Picture.new
-		@picture.photo = params[:point_of_interest][:photo]
-		@picture.user_id = current_user.id
-		@picture.main_image = true
-
-		#default
-		@picture.picture_id = 1
-		
-
 		if ( @poi.save )
+			@picture = Picture.new
+			@picture.photo = params[:point_of_interest][:photo]
+			@picture.user_id = current_user.id
+			@picture.main_image = true
+
+			#default
+			@picture.picture_id = 1
 			@picture.point_of_interest_id = @poi.id
 
 			
+			#Test
+			params[:point_of_interest][:photoarrays].each do |image|
+			  @document = Picture.new
+			  @document.photo = image
+			  @document.picture_id = 1
+			  @document.user_id = current_user.id
+			  @document.main_image = false
+			  @document.point_of_interest_id = @poi.id
+			  @document.save
+			end
 
 			if (@picture.save)
     			redirect_to @poi
