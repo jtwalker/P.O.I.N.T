@@ -6,7 +6,8 @@
   		<div class="location">
   			<h1>Point of Interest Location</h1>
   			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@poi.latitude}%2C#{@poi.longitude}" %>
-  			
+  			<br /><br />
+  			<%= button_to "Get Directions", directions_point_of_interest_path, :id => "get-directions-btn", :class => "get-directions-btn tip", :method => :get %>
   		</div>
 		<div class = "summary">
 			<h1>Summary - About the POI</h1>

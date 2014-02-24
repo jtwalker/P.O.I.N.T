@@ -81,6 +81,10 @@ class PointOfInterestsController < ApplicationController
   		redirect_to point_of_interests_path
 	end
 
+	def directions
+		@poi = PointOfInterest.find(params[:id])
+	end
+
 	private
   	def post_params
     	params.require(:point_of_interest).permit(:latitude, :longitude, :summary, :sponsor_info, :artist_info)

@@ -17,6 +17,12 @@ Point::Application.routes.draw do
     resources :pictures
   end
 
+  resources :point_of_interests do
+    member do
+      get :directions
+    end
+  end
+
   #admin
   get 'admin/index'
   get 'admin' => redirect("admin/index")
