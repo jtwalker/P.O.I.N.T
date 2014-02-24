@@ -15,5 +15,16 @@ class Picture < ActiveRecord::Base
 
   include Rails.application.routes.url_helpers
 
+  def make_main(poi_id, picture_id)
+    Picture.where(point_of_interest_id: poi_id).each do |picture|
+      if picture.id = picture_id
+        picture.main_image = true
+      else
+        picture.main_image = false
+      end
+      picture.save!
+    end
+  end
+
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 end
