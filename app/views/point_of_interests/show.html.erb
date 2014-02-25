@@ -44,6 +44,20 @@
 
 		</div>
 
+		<div class="nearby">
+			<h1>Nearby Locations</h1>
+				<% if @poi.nearbys(10).size == 0 %>
+					The are not any nearby points of interest.
+				<% else %>
+					<ul>
+					<% for poi in @poi.nearbys(10) %>
+						<% pic = Picture.where(point_of_interest_id: poi, main_image: true).first %>
+						<li><%= link_to image_tag(pic.photo.url(:thumb)), poi %> (<%= poi.distance.round(2) %> miles)</li>
+					<% end %>
+					</ul>
+				<% end %>
+		</div>
+
 		<div class = "comments">
 
 			<%= render "comment" %>
