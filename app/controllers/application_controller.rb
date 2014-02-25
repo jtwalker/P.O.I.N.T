@@ -51,4 +51,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :get_picture
 
+  def mobile_device?
+    request.user_agent =~ /Mobile|webOS/
+  end
+  helper_method :mobile_device?
+
 end
