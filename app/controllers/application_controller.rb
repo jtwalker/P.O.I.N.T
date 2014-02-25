@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   	
   	protected
   	def poimgr?
-    	if ( current_user && (current_user.account_type == "POIMGR" || current_user.account_type == "admin") )
+    	if ( current_user && (current_user.account_type == "POIMGR" || current_user.account_type == "ADMIN") )
     		true
     	else
     		false
