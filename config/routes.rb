@@ -17,9 +17,18 @@ Point::Application.routes.draw do
     resources :pictures
   end
 
+  #POI directions
   resources :point_of_interests do
     member do
       get :directions
+    end
+  end
+
+  #Picture
+  resources :pictures do
+    member do
+      post :make_main_image
+      get :make_main_image
     end
   end
 

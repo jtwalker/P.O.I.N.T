@@ -4,7 +4,7 @@
 <% end %>
 
 <h1> Additional Pictures </h1>
-<table class="table table-striped">
+<table class="table table-striped" data-no-turbolink>
 	<thead>
 		<tr>
 		  <th>Picture</th>
@@ -18,7 +18,7 @@
 			<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
 			<tr>
 				<td><%= image_tag picture.photo.url(:thumb) %></td>
-				<td><%= link_to 'Edit', edit_picture_path(picture) %></td>
+				<td><%= link_to 'Make Main Image', {:controller => "pictures", :action => "make_main_image", :id => picture.id} %></td>
 		    	<td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 		    </tr>
 			<% end %>

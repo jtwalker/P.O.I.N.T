@@ -28,12 +28,12 @@
 		  <% if params[:action] == "new" %>
   			<h1>Main Picture</h1>
   				<%= f.file_field :photo %>
-        <h1>Additional Pictures</h1>
-          <%= f.file_field :photoarrays, :multiple => :true %>
+        	<h1>Additional Pictures</h1>
+          		<%= f.file_field :photoarrays, :multiple => :true %>
 
       <% elsif params[:action] == "edit" %>
 
-        <%= render 'edit' %>
+        <%= render 'detailededit' %>
 
       <% end %>
     </div>

@@ -89,5 +89,4 @@ class PointOfInterestsController < ApplicationController
   	def post_params
     	params.require(:point_of_interest).permit(:latitude, :longitude, :summary, :sponsor_info, :artist_info)
   	end
-
 end

@@ -70,7 +70,7 @@ class PicturesController < ApplicationController
         format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { redirect_to request.env['HTTP_REFERER'] }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
       end
     end
@@ -86,6 +86,23 @@ class PicturesController < ApplicationController
     end
   end
 
+  def make_main_image
+      given_picture = Picture.find(params[:id])
+      poi_id = given_picture.point_of_interest_id
+
+      Picture.where(point_of_interest_id: poi_id).each do |picture|
+          picture.update_attribute(:main_image, false)
+      end
+
+      given_picture.update_attribute(:main_image, true)
+
+      respond_to do |format|
+        format.html { redirect_to request.env['HTTP_REFERER'] }
+        format.json { head :no_content }
+      end
+    end
+    helper_method :make_main_image
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
@@ -96,4 +113,6 @@ class PicturesController < ApplicationController
     def picture_params
       params.require(:picture).permit(:photo, :user_id, :point_of_interest_id, :picture_id)
     end
+
+
 end
