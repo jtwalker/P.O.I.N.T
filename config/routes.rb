@@ -15,6 +15,7 @@ Point::Application.routes.draw do
   resources :point_of_interests, :shallow => true do
     resources :comments
     resources :pictures
+    resources :ratings
   end
 
   #POI directions

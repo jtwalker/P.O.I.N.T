@@ -73,6 +73,24 @@ class ApplicationController < ActionController::Base
   end
   helper_method :get_poi_rating
 
+  def has_user_given_poi_rating(point_of_interest_id)
+    if current_user == nil
+      return false
+    end
+
+    poi = PointOfInterest.find(point_of_interest_id)
+
+    rating = Rating.where(point_of_interest_id: poi.id, user_id: current_user.id).first
+
+    if (rating == nil)
+      return false
+    else
+      return true 
+    end
+
+  end
+  helper_method :has_user_given_poi_rating
+
   def mobile_device?
     request.user_agent =~ /Mobile|webOS/
   end

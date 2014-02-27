@@ -17,6 +17,9 @@
 		<div class = "rating">
 			<h1>Rating</h1>
 				<strong><%= get_poi_rating(@poi.id) %></strong>
+				<% if current_user && (has_user_given_poi_rating(@poi.id) == false) %>
+					<%= render "ratingform" %>
+				<% end %>
 		</div>
 		
 		<div class = "sponsor">

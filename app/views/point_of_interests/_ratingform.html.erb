@@ -1,0 +1,26 @@
+<div class = "add_rating">
+
+	<h5>Rate this POI</h5>
+
+	<%= form_for([@poi, @poi.ratings.build]) do |f| %>
+		<div class="rating_radio_field">
+		    <%= f.radio_button :rating, 1 %> 
+		    <%= label :rating, 1 %>
+		    <%= f.radio_button :rating, 2 %> 
+		    <%= label :rating, 2 %>
+		    <%= f.radio_button :rating, 3 %> 
+		    <%= label :rating, 3 %>
+		    <%= f.radio_button :rating, 4 %> 
+		    <%= label :rating, 4 %>
+		    <%= f.radio_button :rating, 5 %> 
+		    <%= label :rating, 5 %>
+  		</div>
+
+		<%= f.hidden_field :point_of_interest_id, :value => @poi.id %> 
+
+		<p>
+			<%= f.submit %>
+		</p>
+	<% end %>
+
+</div>
