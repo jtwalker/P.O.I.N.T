@@ -51,6 +51,28 @@ class ApplicationController < ActionController::Base
   end
   helper_method :get_picture
 
+  def get_poi_rating(point_of_interest_id)
+    total_rating_value = 0
+    rating_avg = 0
+    poi = PointOfInterest.find(point_of_interest_id)
+
+    counter = 0
+    Rating.where(point_of_interest_id: poi.id).each do |rating|
+      current_rating_value = rating.rating
+      total_rating_value = (total_rating_value + current_rating_value)
+      counter = counter + 1
+    end
+
+    if (counter == 0)
+      return 0
+    end
+
+    rating_avg = (total_rating_value/counter)
+
+    return rating_avg
+  end
+  helper_method :get_poi_rating
+
   def mobile_device?
     request.user_agent =~ /Mobile|webOS/
   end

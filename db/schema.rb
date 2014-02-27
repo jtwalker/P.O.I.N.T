@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227185020) do
+ActiveRecord::Schema.define(version: 20140227193314) do
 
   create_table "account_change_requests", force: true do |t|
     t.integer  "user_id"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 20140227185020) do
   end
 
   add_index "point_of_interests", ["user_id"], name: "index_point_of_interests_on_user_id"
+
+  create_table "ratings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "point_of_interest_id"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["point_of_interest_id"], name: "index_ratings_on_point_of_interest_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "uid"

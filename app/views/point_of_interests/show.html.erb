@@ -13,6 +13,11 @@
 			<h1>Summary - About the POI</h1>
 				<%= @poi.summary %>
 		</div>
+
+		<div class = "rating">
+			<h1>Rating</h1>
+				<strong><%= get_poi_rating(@poi.id) %></strong>
+		</div>
 		
 		<div class = "sponsor">
 			<h1>Sponsor Information</h1>
