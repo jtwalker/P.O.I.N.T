@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223014031) do
+ActiveRecord::Schema.define(version: 20140227185020) do
 
   create_table "account_change_requests", force: true do |t|
     t.integer  "user_id"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20140223014031) do
   add_index "pending_picture_uploads", ["user_id"], name: "index_pending_picture_uploads_on_user_id"
 
   create_table "pictures", force: true do |t|
-    t.integer  "picture_id",           null: false
     t.integer  "user_id"
     t.integer  "point_of_interest_id"
     t.datetime "created_at"

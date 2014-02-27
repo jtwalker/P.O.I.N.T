@@ -25,8 +25,6 @@ class PointOfInterestsController < ApplicationController
 			@picture.user_id = current_user.id
 			@picture.main_image = true
 
-			#default
-			@picture.picture_id = 1
 			@picture.point_of_interest_id = @poi.id
 
 			
@@ -34,7 +32,6 @@ class PointOfInterestsController < ApplicationController
 			params[:point_of_interest][:photoarrays].each do |image|
 			  @document = Picture.new
 			  @document.photo = image
-			  @document.picture_id = 1
 			  @document.user_id = current_user.id
 			  @document.main_image = false
 			  @document.point_of_interest_id = @poi.id

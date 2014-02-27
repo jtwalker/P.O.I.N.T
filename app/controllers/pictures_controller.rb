@@ -35,10 +35,6 @@ class PicturesController < ApplicationController
     @picture.user_id = current_user.id
     @picture.main_image = false
 
-    # This is only here to facilitate the creation of new Pictures since this attribute has to be filled in and I don't have 
-    # the user fill it in.
-    @picture.picture_id = 1
-
     #Create Pending Picture Data
     @ppu = PendingPictureUpload.new
     @ppu.user_id = current_user.id
