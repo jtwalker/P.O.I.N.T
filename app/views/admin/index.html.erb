@@ -3,62 +3,81 @@
 <h1>Administration</h1>
 <HR>
 
-<table class="table table-striped">
-  <h2>Pending Account Change Requests</h2>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>User ID</th>
-      <th>Reason</th>
-      <th>To Account type</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h2>Pending Account Change Requests</h2>
 
-  <tbody>
-    <% @acrs.each do |acr| %>
+<% if @acrs.count > 0 %>
+<div class="tables">
+  <table class="table table-striped">
+    <thead>
       <tr>
-      	<td><%= acr.id %></td>
-      	<td><%= get_user(acr.user_id).name %></td>
-        <td><%= acr.user_id %></td>
-        <td><%= acr.reason_message %></td>
-        <td><%= acr.account_type %></td>
-        <td><%= link_to 'Show User', user_path(get_user(acr.user_id)) %></td>
-        <td><%= link_to 'Accept Request', admin_accept_account_change_request_path(:acr => acr) %></td>
-        <td><%= link_to 'Deny Requst', admin_deny_account_change_request_path(:acr => acr) %></td>
+        <th>ID</th>
+        <th>Name</th>
+        <th>User ID</th>
+        <th>Reason</th>
+        <th>To Account type</th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @acrs.each do |acr| %>
+        <tr>
+        	<td><%= acr.id %></td>
+        	<td><%= get_user(acr.user_id).name %></td>
+          <td><%= acr.user_id %></td>
+          <td><%= acr.reason_message %></td>
+          <td><%= acr.account_type %></td>
+          <td><%= link_to 'Show User', user_path(get_user(acr.user_id)) %></td>
+          <td><%= link_to 'Accept Request', admin_accept_account_change_request_path(:acr => acr) %></td>
+          <td><%= link_to 'Deny Requst', admin_deny_account_change_request_path(:acr => acr) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <p>
+    There are currently 0 pending account changes
+  </p>
+<% end %>
 
 <HR>
 
-<table class="table table-striped">
-  <h2>Pending Picture Uploads</h2>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>User ID</th>
-      <th>Picture ID</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h2>Pending Picture Uploads</h2>
 
-  <tbody>
-    <% @ppus.each do |ppu| %>
+<% if @ppus.count > 0 %>
+<div class="tables">
+  <table class="table table-striped">
+    
+    <thead>
       <tr>
-        <td><%= ppu.id %></td>
-        <td><%= ppu.user_id %></td>
-        <td><%= ppu.picture_id %></td>
-        <td><%= link_to 'Show User', user_path(get_user(ppu.user_id)) %></td>
-        <td><%= link_to 'Show Picture', picture_path(get_picture(ppu.picture_id)) %></td>
-        <td><%= link_to 'Accept Picture', admin_accept_pending_picture_upload_path(:ppu => ppu) %></td>
-        <td><%= link_to 'Deny Picture', admin_deny_pending_picture_upload_path(:ppu => ppu) %></td>
+        <th>ID</th>
+        <th>User ID</th>
+        <th>Picture ID</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @ppus.each do |ppu| %>
+        <tr>
+          <td><%= ppu.id %></td>
+          <td><%= ppu.user_id %></td>
+          <td><%= ppu.picture_id %></td>
+          <td><%= link_to 'Show User', user_path(get_user(ppu.user_id)) %></td>
+          <td><%= link_to 'Show Picture', picture_path(get_picture(ppu.picture_id)) %></td>
+          <td><%= link_to 'Accept Picture', admin_accept_pending_picture_upload_path(:ppu => ppu) %></td>
+          <td><%= link_to 'Deny Picture', admin_deny_pending_picture_upload_path(:ppu => ppu) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <p>
+    There are currently 0 pictures that need approval
+  </p>
+<% end %>

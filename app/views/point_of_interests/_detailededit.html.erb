@@ -4,6 +4,8 @@
 <% end %>
 
 <h1> Additional Pictures </h1>
+
+<div class="tables">
 <table class="table table-striped" data-no-turbolink>
 	<thead>
 		<tr>
@@ -25,6 +27,7 @@
 		<% end %>
 	</tbody>
 </table>
+</div>
 
 <% if current_user %>
 	<%= link_to 'Upload Your Own Picture: Requires Approval', new_picture_path(:poi => @poi.id)  %>

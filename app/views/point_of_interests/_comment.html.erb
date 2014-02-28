@@ -18,9 +18,10 @@
 	<% end %>
 </div>
 
+<h2>Comments</h2>
+<div class="tables">
 <% if @poi.comments.count > 0 %>
 	<table class="table table-striped">
-	  <h2>Comments</h2>
 	  <thead>
 	    <tr>
 	      <th>Name</th>
@@ -29,22 +30,25 @@
 	    </tr>
 	  </thead>
 
-	  <tbody>
-	    <% @poi.comments.each do |comment| %>
-	    	<% if comment.user_id %>
-			    <tr>
-			    	<td><%= get_user(comment.user_id).name %></td>
-			      	<td><%= comment.body %></td>
-			      	<% if current_user && current_user.id == comment.user_id %>
+	  
+	  	<tbody>
+	    	<% @poi.comments.each do |comment| %>
+		   		<% if comment.user_id %>
+			    	<tr>
+			    		<td><%= get_user(comment.user_id).name %></td>
+			      		<td><%= comment.body %></td>
+				  		<% if current_user && current_user.id == comment.user_id %>
 							<td><%= button_to "Delete your comment", comment, :method => :delete %></td>
-					<% end %>
-			    </tr>
-			<% end %>
-	    <% end %>
-	  </tbody>
+						<% end %>
+			    	</tr>
+				<% end %>
+	    	<% end %>
+	 	</tbody>
+		
 	</table>
 <% else %>
 	<p>
 		Be the first to comment!
 	</p>
 <% end %>
+</div>
