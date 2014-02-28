@@ -36,7 +36,7 @@
 			    	<td><%= get_user(comment.user_id).name %></td>
 			      	<td><%= comment.body %></td>
 			      	<% if current_user && current_user.id == comment.user_id %>
-							<td><%= button_to "Delete your comment", comment, :method => :delete, :point_of_interest_id => @poi.id %></td>
+							<td><%= button_to "Delete your comment", comment, :method => :delete %></td>
 					<% end %>
 			    </tr>
 			<% end %>
