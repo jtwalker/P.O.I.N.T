@@ -31,13 +31,15 @@
 
 	  <tbody>
 	    <% @poi.comments.each do |comment| %>
+	    	<% if comment.user_id %>
 			    <tr>
 			    	<td><%= get_user(comment.user_id).name %></td>
 			      	<td><%= comment.body %></td>
 			      	<% if current_user && current_user.id == comment.user_id %>
-							<td><%= link_to 'Delete Comment', [comment.point_of_interest, comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+							<td><%= button_to "Delete your comment", comment, :method => :delete, :point_of_interest_id => @poi.id %></td>
 					<% end %>
 			    </tr>
+			<% end %>
 	    <% end %>
 	  </tbody>
 	</table>

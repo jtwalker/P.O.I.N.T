@@ -40,6 +40,10 @@ class ApplicationController < ActionController::Base
 	helper_method :current_user
 
   def get_user(user_id)
+    if (user_id == nil)
+      return nil
+    end
+    
     user = User.find(user_id)
     return user
   end
