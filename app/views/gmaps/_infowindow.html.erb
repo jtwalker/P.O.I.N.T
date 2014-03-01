@@ -3,15 +3,24 @@
 		<%= image_tag picture.photo.url(:thumb) %>
 	<% end %>
 </div>
+
 <div class="text">
 	<h4>Address</h4>
 	<%= gmappoi.address %>
 </div>
+
 <div class="body">
 	<h4>Summary</h4>
 	<%= gmappoi.summary %>
 </div>
+
+<div class="rating">
+	<h4>Rating</h4>
+	<%= get_poi_rating(gmappoi.id) %>
+</div>
+
 <hr>
+
 <div class="link">
 	<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>
 </div>
