@@ -4,16 +4,28 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
+
+    if (current_user == nil || admin? == false)
+      redirect_to root_url
+    end
+
     @pictures = Picture.all
   end
 
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    if (current_user == nil || admin? == false)
+      redirect_to root_url
+    end
   end
 
   # GET /pictures/new
   def new
+
+    if (current_user == nil )
+      redirect_to root_url
+    end
 
     @picture = Picture.new
     @poi = PointOfInterest.find(params[:poi])
@@ -96,8 +108,8 @@ class PicturesController < ApplicationController
         format.html { redirect_to request.env['HTTP_REFERER'] }
         format.json { head :no_content }
       end
-    end
-    helper_method :make_main_image
+  end
+  helper_method :make_main_image
 
   private
     # Use callbacks to share common setup or constraints between actions.

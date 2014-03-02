@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    if ( current_user == nil || current_user.account_type != 'ADMIN')
+    if ( current_user == nil || admin? == false)
       redirect_to root_url
     end
 
@@ -16,14 +16,14 @@ class UsersController < ApplicationController
   def show
      @user = User.find(params[:id])
 
-     if ( @user == nil || current_user == nil || (@user.id != current_user.id && current_user.account_type != 'ADMIN'))
+     if ( @user == nil || current_user == nil || (@user.id != current_user.id && admin? == false ) )
       redirect_to root_url
      end
   end
 
   # GET /users/new
   def new
-    if ( current_user == nil || current_user.account_type != 'ADMIN')
+    if ( current_user == nil || admin? == false )
       redirect_to root_url
     end
     
@@ -32,11 +32,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
     
-    if ( @user == nil || current_user == nil || (@user.id != current_user.id && current_user.account_type != 'ADMIN') )
+    if ( @user == nil || current_user == nil || (@user.id != current_user.id && admin? == false) )
       redirect_to root_url
-     end
+    end
+
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -73,6 +74,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+
+    if (current_user == nil || admin? == false)
+      redirect_to root_url
+    end
+
     @user = User.find(params[:id])
     @user.destroy
     respond_to do |format|

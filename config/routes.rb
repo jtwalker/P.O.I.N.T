@@ -51,6 +51,7 @@ Point::Application.routes.draw do
   get "contact_us_messages/confirmation"
   get "/contact_us_messages" => redirect("/contact_us_messages/new")
   
+  #root_url
   root "main#home"
   
   # The priority is based upon order of creation: first created -> highest priority.

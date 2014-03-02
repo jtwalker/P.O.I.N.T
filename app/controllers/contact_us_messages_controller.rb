@@ -4,7 +4,6 @@ class ContactUsMessagesController < ApplicationController
   
   # GET /contact_us_messages/new
   def new
-    
   end
   
   # Handels creating the message to send to our email

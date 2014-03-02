@@ -6,12 +6,10 @@ class MainController < ApplicationController
 
   # GET /main/rules
   def rules
-
   end
 
   # GET /main/underconstruction
   def underconstruction
-
   end
 
   private

@@ -24,6 +24,11 @@ class AccountChangeRequestsController < ApplicationController
 	end
 
 	def destroy
+
+		if ( current_user == nil || admin? == false)
+			redirect_to root_url
+		end
+
 		@acr = AccountChangeRequest.find(params[:id])
     	@acr.destroy
 

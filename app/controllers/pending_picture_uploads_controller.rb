@@ -1,6 +1,6 @@
 class PendingPictureUploadsController < ApplicationController
 
-	# Handles creating the Account Change Request
+	# Handles creating the Pending Picture Upload
 	def create
 
 		if ( current_user == nil)
@@ -20,6 +20,11 @@ class PendingPictureUploadsController < ApplicationController
 	end
 
 	def destroy
+
+		if ( current_user == nil || admin? == false) 
+			redirect_to root_url
+		end
+
 		@ppu = PendingPictureUpload.find(params[:ppu])
     	@ppu.destroy
 

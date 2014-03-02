@@ -1,11 +1,21 @@
 class AdminController < ApplicationController
 
 	def index
+
+		if ( current_user == nil || admin? == false)
+			redirect_to root_url
+		end
+
 		@acrs = AccountChangeRequest.all
 		@ppus = PendingPictureUpload.all
 	end
 
 	def accept_account_change_request
+
+		if ( current_user == nil || admin? == false)
+			redirect_to root_url
+		end
+
 		acr = AccountChangeRequest.find(params[:acr])
 		user = get_user(acr.user_id)
 		previous_account_type = user.account_type
@@ -23,6 +33,10 @@ class AdminController < ApplicationController
 	end
 
 	def deny_account_change_request
+
+		if ( current_user == nil || admin? == false)
+			redirect_to root_url
+		end
 		
 		acr = AccountChangeRequest.find(params[:acr])
 		user = get_user(acr.user_id)
@@ -42,6 +56,11 @@ class AdminController < ApplicationController
 
 	# If accepted, the ppu will be destroyed only. That means that the picture stays in the db
 	def accept_pending_picture_upload
+
+		if ( current_user == nil || admin? == false)
+			redirect_to root_url
+		end
+
 		ppu = PendingPictureUpload.find(params[:ppu])
 
 		if ppu.destroy
@@ -58,6 +77,10 @@ class AdminController < ApplicationController
 	# If denied, the ppu and picture will be destroyed.
 	def deny_pending_picture_upload
 		
+		if ( current_user == nil || admin? == false)
+			redirect_to root_url
+		end
+
 		ppu = PendingPictureUpload.find(params[:ppu])
 		picture = get_picture(ppu.picture_id)
 

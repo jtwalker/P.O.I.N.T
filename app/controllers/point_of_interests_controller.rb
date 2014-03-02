@@ -1,6 +1,6 @@
 class PointOfInterestsController < ApplicationController
 	
-	before_filter :authorize, :except => [:index, :show ]
+	before_filter :authorize, :except => [ :show ]
 
 	#GET /point_of_interest/new
 	def new
@@ -14,7 +14,10 @@ class PointOfInterestsController < ApplicationController
 
 	# Handles creating the POI
 	def create
-		#render text: params[:point_of_interest].inspect
+
+		if (current_user == nil || poimgr? == false)
+			redirect_to root_url
+		end
 
 		@poi = PointOfInterest.new(post_params)
 		@poi.user_id = current_user.id
@@ -55,6 +58,7 @@ class PointOfInterestsController < ApplicationController
 		@poi = PointOfInterest.find(params[:id])
 	end
 
+	# edit POI
 	def edit
   		@poi = PointOfInterest.find(params[:id])
 	end
@@ -72,6 +76,11 @@ class PointOfInterestsController < ApplicationController
 
 	# Destroys the POI
 	def destroy
+
+		if (current_user == nil || poimgr? == false)
+      		redirect_to root_url
+    	end
+
   		@poi = PointOfInterest.find(params[:id])
   		@poi.destroy
  
