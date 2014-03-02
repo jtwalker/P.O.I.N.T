@@ -28,9 +28,21 @@
           <td><%= acr.user_id %></td>
           <td><%= acr.reason_message %></td>
           <td><%= acr.account_type %></td>
-          <td><%= link_to 'Show User', user_path(get_user(acr.user_id)) %></td>
-          <td><%= link_to 'Accept Request', admin_accept_account_change_request_path(:acr => acr) %></td>
-          <td><%= link_to 'Deny Requst', admin_deny_account_change_request_path(:acr => acr) %></td>
+          <td>
+            <%= link_to user_path(get_user(acr.user_id)), :class => "btn btn-info"  do %> 
+              <i class="fa fa-user"></i> Show User 
+            <%end%> 
+          </td>
+          <td>
+            <%= link_to admin_accept_account_change_request_path(:acr => acr), :class => "btn btn-success" do %>
+              <i class="fa fa-thumbs-up"></i> Accept Request 
+            <% end %> 
+          </td>
+          <td>
+            <%= link_to admin_deny_account_change_request_path(:acr => acr), :class => "btn btn-danger" do %>
+              <i class="fa fa-thumbs-down"></i> Deny Request
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
@@ -67,10 +79,27 @@
           <td><%= ppu.id %></td>
           <td><%= ppu.user_id %></td>
           <td><%= ppu.picture_id %></td>
-          <td><%= link_to 'Show User', user_path(get_user(ppu.user_id)) %></td>
-          <td><%= link_to 'Show Picture', picture_path(get_picture(ppu.picture_id)) %></td>
-          <td><%= link_to 'Accept Picture', admin_accept_pending_picture_upload_path(:ppu => ppu) %></td>
-          <td><%= link_to 'Deny Picture', admin_deny_pending_picture_upload_path(:ppu => ppu) %></td>
+          <td>
+            <%= link_to user_path(get_user(ppu.user_id)), :class => "btn btn-info" do %>
+              <i class="fa fa-user"></i> Show User 
+            <% end %>
+
+          </td>
+          <td>
+            <%= link_to picture_path(get_picture(ppu.picture_id)), :class => "btn btn-info" do %>
+              <i class="fa fa-picture-o"></i> Show Picture
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_accept_pending_picture_upload_path(:ppu => ppu), :class => "btn btn-success" do %>
+              <i class="fa fa-thumbs-up"></i> Accept Picture
+            <% end %>
+          </td>
+          <td>
+            <%= link_to admin_deny_pending_picture_upload_path(:ppu => ppu), :class => "btn btn-danger" do %>
+              <i class="fa fa-thumbs-down"></i> Deny Picture
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -21,27 +21,67 @@
 			
 					<ul class = "nav pull-right">
 						<% if poimgr? %>
-							<li class = "divider-vertical"><%= link_to "POIs", controller: "point_of_interests", action: "index"%></li>
+							<li class = "divider-vertical">
+								<%= link_to controller: "point_of_interests", action: "index" do %>
+									<i class="fa fa-location-arrow"></i> POIs
+								<% end %>
+
+							</li>
 						<% end %>
 						
-						<li class = "divider-vertical"><%= link_to "Rules", controller: "main", action: "rules"%></li>
-						<li class = "divider-vertical"><%= link_to "Contact Us", controller: "contact_us_messages", action: "new" %></li>
+						<li class = "divider-vertical">
+							<%= link_to controller: "main", action: "rules" do %>
+								<i class="fa fa-th-list"></i> Rules
+							<% end %>
+						</li>
+						<li class = "divider-vertical">
+							<%= link_to controller: "contact_us_messages", action: "new" do %>
+								<i class="fa fa-phone"></i> Contact Us
+							<% end %>	
+						</li>
 						
 						<% if admin? %>
-							<li class = "visbile-desktop divider-vertical"><%= link_to "Users", controller: "users", action: "index"%></li>
-							<li class="visible-desktop divider-vertical"><%= link_to "Admin", controller: "admin", action: "index"%></li>
+							<li class = "visbile-desktop divider-vertical">
+								<%= link_to controller: "users", action: "index" do %>
+									<i class="fa fa-users"></i> Users
+								<% end %>
+							</li>
+							
+							<li class="visible-desktop divider-vertical">
+								<%= link_to controller: "admin", action: "index" do %>
+									<i class="fa fa-gears"></i> Admin
+								<% end %>
+							</li>
 						<% end %>
 					    
 					    <% if current_user %>
-					    	<li class = "divider-vertical"><%= link_to "Profile", user_path(current_user) %></li>
+					    	<li class = "divider-vertical">
+					    		<%= link_to user_path(current_user) do %> 
+					    			<i class="fa fa-user"></i> Profile
+					    		<% end %>
+					    	</li>
 					    <% end %>
 					    
 					    <% if current_user %>
-		    				<li class = "divider-vertical">Signed in as <strong><%= current_user.name %></strong>!</li>
-		    				<li class = "divider-vertical"><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
+		    				<li class = "divider-vertical">
+		    					Signed in as <%= current_user.name %>!
+		    				</li>
+		    				<li class = "divider-vertical">
+		    					<%= link_to signout_path, id: "sign_out" do %>
+		    						<i class="fa fa-sign-out"></i> Sign Out
+		    					<% end %>
+		    				</li>
 		  				<% else %>
-		  					<li class = "divider-vertical"><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %> </li>
-							<li class = "divider-vertical"><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %> </li>
+		  					<li class = "divider-vertical">
+		  						<%= link_to "/auth/facebook", id: "sign_in" do %> 
+		  							<i class="fa fa-facebook-square"></i> Sign in with Facebook
+		  						<% end %>
+		  					</li>
+							<li class = "divider-vertical">
+								<%= link_to "/auth/google_oauth2", id: "sign_in" do %>
+									<i class="fa fa-google-plus-square"></i> Sign in with Google
+								<% end %>
+							</li>
 						<% end %>
 
 					</ul>
