@@ -1,37 +1,47 @@
-<h1>Listing users</h1>
+<h1><i class="fa fa-users"></i> Listing users</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>UID</th>
-      <th>Provider</th>
-      <th>Account type</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+<div class="tables">
+  <table class="table table-striped">
+    <thead>
       <tr>
-      	<td><%= user.id %></td>
-      	<td><%= user.name %></td>
-        <td><%= user.uid %></td>
-        <td><%= user.provider %></td>
-        <td><%= user.account_type %></td>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Name</th>
+        <th>UID</th>
+        <th>Provider</th>
+        <th>Account type</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+        	<td><%= user.id %></td>
+        	<td><%= user.name %></td>
+          <td><%= user.uid %></td>
+          <td><%= user.provider %></td>
+          <td><%= user.account_type %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= link_to user, :class => "btn btn-info" do %>
+              <i class="fa fa-user"></i> Show User
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_user_path(user), :class => "btn btn-primary" do %>
+              <i class="fa fa-gear fa-spin"></i> Edit User
+            <% end %>
+          </td>
+          <td>
+            <%= link_to user, method: :delete, data: { confirm: 'Are you sure?'}, :class => "btn btn-danger" do %>
+              <i class="fa fa-times"></i> Delete User
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

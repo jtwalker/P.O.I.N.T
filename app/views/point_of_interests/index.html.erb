@@ -1,31 +1,48 @@
-<h1>Your Current Points of Interest:</h1>
- 
-<table class="table table-striped">
-  <tr>
-    <th>POI ID</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Summary</th>
-    <th>Artist Information</th>
-    <th>Sponsor Information</th>
-  </tr>
- 
-  <% @pois.each do |poi| %>
-    <% if poi.user_id == current_user.id %>
-      <tr>
-        <td><%= poi.id %></td>
-        <td><%= poi.latitude %></td>
-        <td><%= poi.longitude %></td>
-        <td><%=h truncate(poi.summary, :length => 50) %></td>
-        <td><%=h truncate(poi.artist_info, :length => 50) %></td>
-        <td><%=h truncate(poi.sponsor_info, :length => 50) %></td>
-        <td><%= link_to 'Show', poi %></td>
-        <td><%= link_to 'Edit', edit_point_of_interest_path(poi) %></td>
-        <td><%= link_to 'Destroy', point_of_interest_path(poi), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<h1><i class="fa fa-location-arrow fa-spin"></i> Your Current Points of Interest:</h1>
+
+<%= link_to new_point_of_interest_path, :class=>"btn btn-success" do %>
+  <i class="fa fa-plus-circle"></i> Create New Point of Interest
+<% end %>
+
+<div class="tables">
+  <table class="table table-striped">
+    <tr>
+      <th>POI ID</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Summary</th>
+      <th>Artist Information</th>
+      <th>Sponsor Information</th>
+    </tr>
+   
+    <% @pois.each do |poi| %>
+      <% if poi.user_id == current_user.id %>
+        <tr>
+          <td><%= poi.id %></td>
+          <td><%= poi.latitude %></td>
+          <td><%= poi.longitude %></td>
+          <td><%=h truncate(poi.summary, :length => 50) %></td>
+          <td><%=h truncate(poi.artist_info, :length => 50) %></td>
+          <td><%=h truncate(poi.sponsor_info, :length => 50) %></td>
+          <td>
+            <%= link_to poi, :class => "btn btn-info" do %>
+              <i class="fa fa-location-arrow"></i> Show POI
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_point_of_interest_path(poi), :class => "btn btn-primary" do %>
+              <i class="fa fa-gear fa-spin"></i> Edit POI
+            <% end %>
+          </td>
+          <td>
+            <%= link_to point_of_interest_path(poi), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" do %>
+              <i class="fa fa-times"></i> Delete POI
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
+  </table>
+</div>
 
 <br><hr>
-<%= link_to 'Add New Point of Interest', new_point_of_interest_path %>

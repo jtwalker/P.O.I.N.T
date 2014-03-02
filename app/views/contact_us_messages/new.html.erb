@@ -1,5 +1,5 @@
-<h1>Contact Us</h1>
-	
+<h1><i class="fa fa-phone"></i> Contact Us</h1>
+<%= bootstrap_flash %>
 
 <%= form_for :contact_us_message, url: contact_us_messages_path do |f| %>
   <p>
@@ -23,6 +23,6 @@
   </p>
  
   <p>
-    <%= f.submit "Send Message" %>
+    <%= f.submit "Send Message", :class => "btn btn-primary" %>
   </p>
 <% end %>
