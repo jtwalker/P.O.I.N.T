@@ -38,6 +38,19 @@ td {
 	min-width: 50px;
 }
 
+label {
+	display: inline-block;
+	padding: 5px;
+}
+
+textarea {
+	width: 100%;
+}
+
+.rating_radio_field {
+	padding: 5px;
+}
+
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths

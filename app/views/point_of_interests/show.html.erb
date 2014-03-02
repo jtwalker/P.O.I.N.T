@@ -3,79 +3,113 @@
 	<head>
   	</head>
   	<body>
-  		<div class="location">
-  			<h1>Point of Interest Location</h1>
-  			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@poi.latitude}%2C#{@poi.longitude}" %>
-  			<br /><br />
-  			<%= button_to "Get Directions", directions_point_of_interest_path, :id => "get-directions-btn", :class => "get-directions-btn tip", :method => :get %>
-  		</div>
-		<div class = "summary">
-			<h1>Summary - About the POI</h1>
-				<%= @poi.summary %>
+
+  		<div class="container-fluid">
+  			<div class="row-fluid">
+
+  				<div class="span6">
+			  		
+			  		<div class="location">
+			  			<h1>Point of Interest Location</h1>
+			  			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@poi.latitude}%2C#{@poi.longitude}" %>
+			  			<br /><br />
+			  			<%= button_to "Get Directions", directions_point_of_interest_path, :id => "get-directions-btn", :class => "get-directions-btn tip", :method => :get %>
+			  		</div>
+
+					<div class = "pictures">
+
+						<div class="main_picture">
+							<h1>Main Picture</h1>
+					
+							<% Picture.where(point_of_interest_id: @poi.id, main_image: true).each do |picture| %>
+								<%= image_tag picture.photo.url(:medium) %>
+							<% end %>
+						</div>
+
+						<div class = "other_pictures">	
+							<h1>Other Pictures</h1>
+							<% Picture.where(point_of_interest_id: @poi.id, main_image: false).each do |picture| %>
+								<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
+									<%= image_tag picture.photo.url(:thumb) %>
+								<% end %>
+							<% end %>
+						</div>
+
+						<% if current_user %>
+							<%= link_to 'Upload Your Own Picture', new_picture_path(:poi => @poi.id), :class => "btn"  %>
+						<% end %>
+
+					</div>
+					
+				</div>
+				
+				<div class="span6">
+
+					<div class = "rating">
+						<h4>Rating</h4>
+							<strong><%= get_poi_rating(@poi.id) %></strong>
+							<% if current_user && (has_user_given_poi_rating(@poi.id) == false) %>
+								<%= render "ratingform" %>
+							<% end %>
+					</div>
+
+					<HR>
+
+					<div class = "summary">
+						<h1>Summary - About the POI</h1>
+							<%= @poi.summary %>
+					</div>
+
+					<HR>
+					
+					<div class = "sponsor">
+						<h1>Sponsor Information</h1>
+							<%= @poi.sponsor_info %>
+					</div>
+					
+					<HR>
+
+					<div class = "artist">
+						<h1>Artist</h1>
+							<%= @poi.artist_info %>
+					</div>
+
+					<HR>
+
+					<div class="nearby">
+						<h1>Nearby Locations</h1>
+						<% if @poi.nearbys(10).size == 0 %>
+							The are not any nearby points of interest.
+						<% else %>
+							<ul>
+							<% for poi in @poi.nearbys(10) %>
+								<% pic = Picture.where(point_of_interest_id: poi, main_image: true).first %>
+								<li><%= link_to image_tag(pic.photo.url(:thumb)), poi %> (<%= poi.distance.round(2) %> miles)</li>
+							<% end %>
+							</ul>
+						<% end %>
+					</div>
+
+					<HR>
+
+					
+				</div>
+			</div>	
 		</div>
 
-		<div class = "rating">
-			<h1>Rating</h1>
-				<strong><%= get_poi_rating(@poi.id) %></strong>
-				<% if current_user && (has_user_given_poi_rating(@poi.id) == false) %>
-					<%= render "ratingform" %>
-				<% end %>
-		</div>
-		
-		<div class = "sponsor">
-			<h1>Sponsor Information</h1>
-				<%= @poi.sponsor_info %>
-		</div>
-		
-		<div class = "artist">
-			<h1>Artist</h1>
-				<%= @poi.artist_info %>
-		</div>
-		
-		<div class = "pictures">
+		<HR>
 
-			<h1>Main Picture</h1>
-				<% Picture.where(point_of_interest_id: @poi.id, main_image: true).each do |picture| %>
-					<%= image_tag picture.photo.url(:medium) %>
-				<% end %>
+		<div class="poi_share_comments">
+			<div class="share">
+				<h1>Share this Page</h1>
+				<%= render "share" %>
+			</div>
 
-			<h1>Other Pictures</h1>
-				<% Picture.where(point_of_interest_id: @poi.id, main_image: false).each do |picture| %>
-					<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
-						<%= image_tag picture.photo.url(:thumb) %>
-					<% end %>
-				<% end %>
-
-			<% if current_user %>
-				<%= link_to 'Upload Your Own Picture', new_picture_path(:poi => @poi.id)  %>
-			<% end %>
-
+			<div class = "comments">
+				<%= render "comment" %>
+			</div>
 		</div>
 
-		<div class="nearby">
-			<h1>Nearby Locations</h1>
-				<% if @poi.nearbys(10).size == 0 %>
-					The are not any nearby points of interest.
-				<% else %>
-					<ul>
-					<% for poi in @poi.nearbys(10) %>
-						<% pic = Picture.where(point_of_interest_id: poi, main_image: true).first %>
-						<li><%= link_to image_tag(pic.photo.url(:thumb)), poi %> (<%= poi.distance.round(2) %> miles)</li>
-					<% end %>
-					</ul>
-				<% end %>
-		</div>
-
-		<div class="share">
-			<h1>Share this Page</h1>
-			<%= render "share" %>
-		</div>
-
-		<div class = "comments">
-
-			<%= render "comment" %>
-
-		</div>
 	</body>
 
 </html>

@@ -1,10 +1,10 @@
 <div class = "add_comment">
 	<% if current_user %>
-		<h2>Add a comment:</h2>
+		<h3>Add a comment:</h3>
 
 		<%= form_for([@poi, @poi.comments.build]) do |f| %>
 			<p>
-				<%= f.label :body %><br />
+				<%= f.label "Comment" %><br />
 				<%= f.text_area :body %>
 			</p>
 
@@ -18,7 +18,7 @@
 	<% end %>
 </div>
 
-<h2>Comments</h2>
+<h3>Comments</h3>
 <div class="tables">
 <% if @poi.comments.count > 0 %>
 	<table class="table table-striped">
