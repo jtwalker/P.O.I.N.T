@@ -1,46 +1,64 @@
 <%= form_for @poi, :remote => true, :authenticity_token => true, :html => { :multipart => true } do |f| %>
   	<body>
-  		<div class ="address">
-	  		<p>
-	    		<b>Latitude:</b>
-	    		<%= f.text_field :latitude %><br>
-	    		<b>Longitude:</b>
-	    		<%= f.text_field :longitude %>
-	    	</p>
-	    </div>
-		<div class = "summary">
-			<h1>Summary - About the POI</h1>
-				<%= f.text_area :summary %>
+  		<div class="container-fluid">
+  			<div class="row-fluid">
+
+  				<div class="span6">
+
+			  		<div class ="address">
+				  		<p>
+				    		<h1><i class="fa fa-arrows-v"></i> Latitude:</h1>
+				    		<%= f.text_field :latitude %><br>
+				    		
+				    		<h1><i class="fa fa-arrow-h"></i> Longitude:</h1>
+				    		<%= f.text_field :longitude %>
+				    	</p>
+				    </div>
+
+				    <div class = "pictures">
+
+						<% if params[:action] == "new" %>
+				  			<h1><i class="fa fa-picture-o"></i> Main Picture</h1>
+				  				<%= f.file_field :photo %>
+				        	<h1><i class="fa fa-camera-retro"></i> Additional Pictures - Yours and Other Users</h1>
+				          		<%= f.file_field :photoarrays, :multiple => :true %>
+
+				      	<% elsif params[:action] == "edit" %>
+
+				        	<%= render 'detailededit' %>
+
+				      	<% end %>
+				    </div>
+
+				</div>
+
+				<div class="span6">
+
+					<div class = "summary">
+						<h1><i class="fa fa-book"></i> Summary - About the POI</h1>
+							<%= f.text_area :summary %>
+					</div>
+					
+					<div class = "sponsor">
+						<h1><i class="fa fa-bookmark"></i> Sponsor Information</h1>			
+			    		<%= f.text_area :sponsor_info %>
+					</div>
+					
+					<div class = "artist">
+						<h1><i class="fa fa-bookmark"></i> Artist</h1>
+			    		<%= f.text_area :artist_info %>
+					</div>
+
+				</div>
+			
+			</div>
 		</div>
-		
-		<div class = "sponsor">
-			<h1>Sponsor Information</h1>			
-    		<%= f.text_area :sponsor_info %>
-		</div>
-		
-		<div class = "artist">
-			<h1>Artist</h1>
-    		<%= f.text_area :artist_info %>
-		</div>
 
-    <div class = "pictures">
-
-		  <% if params[:action] == "new" %>
-  			<h1>Main Picture</h1>
-  				<%= f.file_field :photo %>
-        	<h1>Additional Pictures</h1>
-          		<%= f.file_field :photoarrays, :multiple => :true %>
-
-      <% elsif params[:action] == "edit" %>
-
-        <%= render 'detailededit' %>
-
-      <% end %>
-    </div>
 	</body>
  
+ <HR>
   <p>
     <br />
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </p>
 <% end %>

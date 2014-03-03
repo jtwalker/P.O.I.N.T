@@ -41,6 +41,13 @@
 						</li>
 						
 						<% if admin? %>
+
+							<li class = "visbile-desktop divider-vertical">
+								<%= link_to controller: "pictures", action: "index" do %>
+									<i class="fa fa-picture-o"></i> Pictures
+								<% end %>
+							</li>
+
 							<li class = "visbile-desktop divider-vertical">
 								<%= link_to controller: "users", action: "index" do %>
 									<i class="fa fa-users"></i> Users

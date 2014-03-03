@@ -1,29 +1,43 @@
-<h1>Listing pictures</h1>
+<h1><i class="fa fa-picture-o"></i> Listing pictures</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Picture</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pictures.each do |picture| %>
+<div class="tables">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= picture.id %></td>
-        <td><%= image_tag picture.photo.url(:thumb) %></td>
-        <td><%= link_to 'Show', picture %></td>
-        <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
-        <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>ID</th>
+        <th>Picture</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @pictures.each do |picture| %>
+        <tr>
+          <td><%= picture.id %></td>
+          <td><%= image_tag picture.photo.url(:thumb) %></td>
+          
+          <td>
+            <%= link_to point_of_interest_path(picture.point_of_interest_id), :class => "btn btn-info" do %>
+              <i class="fa fa-location-arrow"></i> Show Associated POI
+            <% end %>
+          </td>
+          
+          <td>
+            <%= link_to picture, :class => "btn btn-info" do %>
+              <i class="fa fa-picture-o"></i> Show Picture
+            <% end %>
+          </td>
+          
+          <td>
+            <%= link_to picture, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" do %>
+              <i class="fa fa-times"></i> Delete picture
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Picture', new_picture_path %>
+</div>

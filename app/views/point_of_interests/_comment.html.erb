@@ -11,7 +11,7 @@
 			<%= f.hidden_field :user_id, :value => current_user.id %> 
 
 			<p>
-				<%= f.submit %>
+				<%= f.submit :class=>"btn btn-success"%>
 			</p>
 		<% end %>
 
@@ -38,7 +38,11 @@
 			    		<td><%= get_user(comment.user_id).name %></td>
 			      		<td><%= comment.body %></td>
 				  		<% if current_user && current_user.id == comment.user_id %>
-							<td><%= button_to "Delete your comment", comment, :method => :delete %></td>
+							<td>
+								<%= button_to comment, :method => :delete, :class => "btn btn-danger" do %>
+									<i class="fa fa-times"></i> Delete Comment
+								<% end %>
+							</td>
 						<% end %>
 			    	</tr>
 				<% end %>
