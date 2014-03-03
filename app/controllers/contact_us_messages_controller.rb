@@ -13,9 +13,4 @@ class ContactUsMessagesController < ApplicationController
     redirect_to '/contact_us_messages/new'
   end
   
-  # GET /contact_us_messages/confirmation
-  def confirmation
-    
-  end
-  
 end

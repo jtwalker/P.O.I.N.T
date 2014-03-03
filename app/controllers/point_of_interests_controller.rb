@@ -42,13 +42,18 @@ class PointOfInterestsController < ApplicationController
 			end
 
 			if (@picture.save)
+
+				flash[:notice] = "POI was created successfully"
     			redirect_to @poi
     		else
 
     			@poi.destroy
+    			flash[:alert] = "POI was not created due to a problem with the Picture(s) you were trying to upload"
     			render 'new'
     		end
   		else
+
+  			flash[:alert] = "POI was not created, contact us if problem persists"
     		render 'new'
   		end
 	end
@@ -69,6 +74,7 @@ class PointOfInterestsController < ApplicationController
   		@poi = PointOfInterest.find(params[:id])
  
   		if @poi.update(params[:point_of_interest].permit(:latitude, :longitude, :summary, :sponsor_info, :artist_info))
+    		flash[:notice] = "POI was successfully updated"
     		redirect_to @poi
   		else
     		render 'edit'
@@ -83,8 +89,13 @@ class PointOfInterestsController < ApplicationController
     	end
 
   		@poi = PointOfInterest.find(params[:id])
-  		@poi.destroy
- 
+  		
+  		if @poi.destroy
+  			flash[:notice] = "POI was successfully Deleted!"
+  		else	 
+  			flash[:alert] = "POI was not deleted. Please contact us if the problem persists"
+  		end
+
   		redirect_to point_of_interests_path
 	end
 
