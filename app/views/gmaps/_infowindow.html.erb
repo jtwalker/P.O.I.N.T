@@ -4,6 +4,10 @@
 	<% end %>
 </div>
 
+<div class="link">
+	<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>
+</div>
+
 <div class="text">
 	<h4>Address</h4>
 	<%= gmappoi.address %>
@@ -16,7 +20,32 @@
 
 <div class="rating">
 	<h4>Rating</h4>
-	<%= get_poi_rating(gmappoi.id) %>
+	<%= @rating = get_poi_rating(gmappoi.id) %>
+	
+	<% if @rating == 0 %>
+		<i class="fa fa-star-o fa-2x fa-spin"></i>
+	<% else %>
+		<% if @rating > 0 %>
+			<i class="fa fa-star fa-2x fa-spin"></i>
+		<% end %>
+
+		<% if @rating > 1 %>
+			<i class="fa fa-star fa-2x fa-spin"></i>
+		<% end %>
+								
+		<% if @rating > 2 %>
+			<i class="fa fa-star fa-2x fa-spin"></i>
+		<% end %>
+								
+		<% if @rating > 3 %>
+			<i class="fa fa-star fa-2x fa-spin"></i>
+		<% end %>
+
+		<% if @rating > 4 %>
+			<i class="fa fa-star fa-2x fa-spin"></i>
+		<% end %>		
+									 
+	<% end %>
 </div>
 
 <hr>

@@ -51,6 +51,10 @@ textarea {
 	padding: 5px;
 }
 
+.fa-star {
+	color: goldenrod;
+}
+
 @import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths

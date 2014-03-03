@@ -5,20 +5,35 @@
 	<%= form_for([@poi, @poi.ratings.build]) do |f| %>
 		<div class="rating_radio_field", style="display:inline">
 		    <%= f.radio_button :rating, 1 %> 
-		    <%= label :rating, 1 %>
-		    <%= f.radio_button :rating, 2 %> 
-		    <%= label :rating, 2 %>
+		    <%= label :rating, 1 do %>
+		    	1 <i class="fa fa-star"></i>
+		    <% end %>
+
+		    <%= f.radio_button :rating, 2 %>
+		    <%= label :rating, 2 do %>
+		    	2 <i class="fa fa-star"></i>
+		    <% end %>
+
 		    <%= f.radio_button :rating, 3 %> 
-		    <%= label :rating, 3 %>
+		    <%= label :rating, 3 do %>
+		    	3 <i class="fa fa-star"></i>
+		    <% end %>
+
 		    <%= f.radio_button :rating, 4 %> 
-		    <%= label :rating, 4 %>
+		    <%= label :rating, 4 do %>
+		    	4 <i class="fa fa-star"></i>
+		    <% end %>
+		    
 		    <%= f.radio_button :rating, 5 %> 
-		    <%= label :rating, 5 %>
+		    <%= label :rating, 5 do %>
+		    	5 <i class="fa fa-star"></i>
+		    <% end %>
+  		
   		</div>
 
 		<%= f.hidden_field :point_of_interest_id, :value => @poi.id %> 
 
-		<%= f.submit %>
+		<%= f.submit :class => "btn btn-success" %>
 		
 	<% end %>
 

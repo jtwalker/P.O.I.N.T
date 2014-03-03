@@ -10,16 +10,16 @@
   				<div class="span6">
 			  		
 			  		<div class="location">
-			  			<h1>Point of Interest Location</h1>
+			  			<h1><i class="fa fa-location-arrow"></i> Point of Interest Location</h1>
 			  			<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@poi.latitude}%2C#{@poi.longitude}" %>
 			  			<br /><br />
-			  			<%= button_to "Get Directions", directions_point_of_interest_path, :id => "get-directions-btn", :class => "get-directions-btn tip", :method => :get %>
+			  			<%= button_to "Get Directions", directions_point_of_interest_path, :id => "get-directions-btn", :class => "btn btn-info", :method => :get %>
 			  		</div>
 
 					<div class = "pictures">
 
 						<div class="main_picture">
-							<h1>Main Picture</h1>
+							<h2><i class="fa fa-picture-o"></i> Main Picture</h2>
 					
 							<% Picture.where(point_of_interest_id: @poi.id, main_image: true).each do |picture| %>
 								<%= image_tag picture.photo.url(:medium) %>
@@ -27,7 +27,7 @@
 						</div>
 
 						<div class = "other_pictures">	
-							<h1>Other Pictures</h1>
+							<h2><i class="fa fa-camera-retro"></i> Other Pictures</h2>
 							<% Picture.where(point_of_interest_id: @poi.id, main_image: false).each do |picture| %>
 								<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
 									<%= image_tag picture.photo.url(:thumb) %>
@@ -36,7 +36,9 @@
 						</div>
 
 						<% if current_user %>
-							<%= link_to 'Upload Your Own Picture', new_picture_path(:poi => @poi.id), :class => "btn"  %>
+							<%= link_to new_picture_path(:poi => @poi.id), :class => "btn btn-primary" do %>
+								<i class="fa fa-file"></i> Upload Your Own Picture
+							<% end %>
 						<% end %>
 
 					</div>
@@ -46,8 +48,33 @@
 				<div class="span6">
 
 					<div class = "rating">
-						<h4>Rating</h4>
-							<strong><%= get_poi_rating(@poi.id) %></strong>
+						<h3><i class="fa fa-sun-o"></i> Rating</h3>
+							
+							<% if @rating == 0 %>
+								<i class="fa fa-star-o fa-2x fa-spin"></i>
+							<% else %>
+								<% if @rating > 0 %>
+									<i class="fa fa-star fa-2x fa-spin"></i>
+								<% end %>
+
+								<% if @rating > 1 %>
+									<i class="fa fa-star fa-2x fa-spin"></i>
+								<% end %>
+								
+								<% if @rating > 2 %>
+									<i class="fa fa-star fa-2x fa-spin"></i>
+								<% end %>
+								
+								<% if @rating > 3 %>
+									<i class="fa fa-star fa-2x fa-spin"></i>
+								<% end %>
+
+								<% if @rating > 4 %>
+									<i class="fa fa-star fa-2x fa-spin"></i>
+								<% end %>		
+									 
+							<% end %>
+							
 							<% if current_user && (has_user_given_poi_rating(@poi.id) == false) %>
 								<%= render "ratingform" %>
 							<% end %>
@@ -56,28 +83,29 @@
 					<HR>
 
 					<div class = "summary">
-						<h1>Summary - About the POI</h1>
+						<h2><i class="fa fa-book"></i> Summary - About the POI</h2>
 							<%= @poi.summary %>
 					</div>
 
 					<HR>
 					
 					<div class = "sponsor">
-						<h1>Sponsor Information</h1>
+						<h2><i class="fa fa-bookmark"></i> Sponsor Information</h2>
 							<%= @poi.sponsor_info %>
 					</div>
 					
 					<HR>
 
 					<div class = "artist">
-						<h1>Artist</h1>
+						<h2><i class="fa fa-bookmark"></i> Artist</h2>
 							<%= @poi.artist_info %>
 					</div>
 
 					<HR>
 
 					<div class="nearby">
-						<h1>Nearby Locations</h1>
+						<h2><i class="fa fa-globe fa-spin"></i> Nearby Locations</h2>
+						
 						<% if @poi.nearbys(10).size == 0 %>
 							The are not any nearby points of interest.
 						<% else %>

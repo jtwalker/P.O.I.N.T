@@ -56,6 +56,7 @@ class PointOfInterestsController < ApplicationController
 	# GET /point_of_interest/:id(.:format) point_of_interests@show
 	def show
 		@poi = PointOfInterest.find(params[:id])
+		@rating = get_poi_rating(@poi.id)
 	end
 
 	# edit POI
