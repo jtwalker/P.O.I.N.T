@@ -1,0 +1,41 @@
+<html>
+
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+		<%= javascript_include_tag "jquery.carouFredSel" %>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+			    // Using custom configuration
+			    $('#carousel').carouFredSel({
+			        items               : 3,
+			        direction           : "left",
+			        height				: 250,
+			        width               : "100%",
+			        align				:"center",
+			        scroll : {
+			            items           : 1,
+			            easing          : "linear",
+			            duration        : 750,                         
+			            pauseOnHover    : "immediate-resume"
+			        }                   
+			    });
+			});
+		</script>
+	</head>
+
+	<body>
+		<br />
+		<h2><i class="fa fa-picture-o"></i>Recently Added Pictures</h2>
+		<div id="carousel">
+		
+			<% Picture.all.reverse_order.limit(10).each do |picture| %>
+				<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
+					<%= link_to image_tag(picture.photo.url(:medium)), PointOfInterest.find(picture.point_of_interest_id) %>
+				<% end %>
+			<% end %>
+
+		</div>
+	</body>
+
+</html>
