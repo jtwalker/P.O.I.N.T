@@ -44,7 +44,6 @@ Point::Application.routes.draw do
   #main
   get "main/home"
   get "main/rules"
-  get "main/underconstruction"
   
   #Contact us
   resources :contact_us_messages, :only => [:new, :create]

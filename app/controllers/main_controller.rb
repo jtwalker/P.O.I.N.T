@@ -8,10 +8,6 @@ class MainController < ApplicationController
   def rules
   end
 
-  # GET /main/underconstruction
-  def underconstruction
-  end
-
   private
 
   def populate_google_map_with_pois()
