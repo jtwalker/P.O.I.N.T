@@ -1,55 +1,77 @@
-<div class="image" align="top">
-	<% Picture.where(point_of_interest_id: gmappoi.id, main_image: true).each do |picture| %>
-		<%= image_tag picture.photo.url(:thumb) %>
-	<% end %>
-</div>
+<html>
 
-<div class="link">
-	<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>
-</div>
+	<head>
+	</head>
 
-<div class="text">
-	<h4>Address</h4>
-	<%= gmappoi.address %>
-</div>
+	<body>
 
-<div class="body">
-	<h4>Summary</h4>
-	<%= gmappoi.summary %>
-</div>
+		<div class="container-fluid">
+  			<div class="row-fluid">
 
-<div class="rating">
-	<h4>Rating</h4>
-	<%= @rating = get_poi_rating(gmappoi.id) %>
-	
-	<% if @rating == 0 %>
-		<i class="fa fa-star-o fa-2x fa-spin"></i>
-	<% else %>
-		<% if @rating > 0 %>
-			<i class="fa fa-star fa-2x fa-spin"></i>
-		<% end %>
+  				<div class="span6">
 
-		<% if @rating > 1 %>
-			<i class="fa fa-star fa-2x fa-spin"></i>
-		<% end %>
-								
-		<% if @rating > 2 %>
-			<i class="fa fa-star fa-2x fa-spin"></i>
-		<% end %>
-								
-		<% if @rating > 3 %>
-			<i class="fa fa-star fa-2x fa-spin"></i>
-		<% end %>
+					<div class="image">
+						<% Picture.where(point_of_interest_id: gmappoi.id, main_image: true).each do |picture| %>
+							<%= image_tag picture.photo.url(:square) %>
+						<% end %>
+					</div>
 
-		<% if @rating > 4 %>
-			<i class="fa fa-star fa-2x fa-spin"></i>
-		<% end %>		
-									 
-	<% end %>
-</div>
+					<div class="link">
+						<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>  |  
+						<%= link_to "Get Directions", "point_of_interests/" + gmappoi.id.to_s + "/directions" %>
+					</div>
 
-<hr>
+				</div>
 
-<div class="link">
-	<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>
-</div>
+				<div class="span6">
+
+					<div class="text">
+						<h4>Address</h4>
+						<%= gmappoi.address %>
+					</div>
+
+					<div class="rating">
+						<h4>Rating</h4>
+						<% @rating = get_poi_rating(gmappoi.id) %>
+						
+						<% if @rating == 0 %>
+							<i class="fa fa-star-o fa-2x fa-spin"></i>
+						<% else %>
+							<% if @rating > 0 %>
+								<i class="fa fa-star fa-2x fa-spin"></i>
+							<% end %>
+
+							<% if @rating > 1 %>
+								<i class="fa fa-star fa-2x fa-spin"></i>
+							<% end %>
+													
+							<% if @rating > 2 %>
+								<i class="fa fa-star fa-2x fa-spin"></i>
+							<% end %>
+													
+							<% if @rating > 3 %>
+								<i class="fa fa-star fa-2x fa-spin"></i>
+							<% end %>
+
+							<% if @rating > 4 %>
+								<i class="fa fa-star fa-2x fa-spin"></i>
+							<% end %>		
+														 
+						<% end %>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="body">
+			<h4>Summary</h4>
+			<%= gmappoi.summary %>
+		</div>
+		<hr>
+		<div class="link">
+			<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>  |  
+			<%= link_to "Get Directions", "point_of_interests/" + gmappoi.id.to_s + "/directions" %>
+		</div>
+	</body>
+</html>
