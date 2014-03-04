@@ -1,6 +1,6 @@
 class PointOfInterestsController < ApplicationController
 	
-	before_filter :authorize, :except => [ :show ]
+	before_filter :authorize, :except => [ :show, :directions ]
 
 	#GET /point_of_interest/new
 	def new
