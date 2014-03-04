@@ -4,6 +4,8 @@ class Picture < ActiveRecord::Base
   
   has_one :user
   has_one :point_of_interest
+
+  has_one :pendingpictureuploads, :class_name => 'PendingPictureUpload', dependent: :destroy
   
   accepts_nested_attributes_for :user, :point_of_interest, :allow_destroy => true
   
