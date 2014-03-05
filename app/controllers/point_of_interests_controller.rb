@@ -23,6 +23,7 @@ class PointOfInterestsController < ApplicationController
 		@poi.user_id = current_user.id
 
 		if ( @poi.save )
+			#for main image
 			@picture = Picture.new
 			@picture.photo = params[:point_of_interest][:photo]
 			@picture.user_id = current_user.id
@@ -30,18 +31,19 @@ class PointOfInterestsController < ApplicationController
 
 			@picture.point_of_interest_id = @poi.id
 
-			
-			#Test
-			params[:point_of_interest][:photoarrays].each do |image|
-			  @document = Picture.new
-			  @document.photo = image
-			  @document.user_id = current_user.id
-			  @document.main_image = false
-			  @document.point_of_interest_id = @poi.id
-			  @document.save
+			# for additional pictures
+			if (params[:point_of_interest][:photoarrays] != nil)
+				params[:point_of_interest][:photoarrays].each do |image|
+				  @document = Picture.new
+				  @document.photo = image
+				  @document.user_id = current_user.id
+				  @document.main_image = false
+				  @document.point_of_interest_id = @poi.id
+				  @document.save
+				end
 			end
 
-			if (@picture.save)
+			if (params[:point_of_interest][:photo] != nil && @picture.save)
 
 				flash[:notice] = "POI was created successfully"
     			redirect_to @poi
@@ -49,12 +51,12 @@ class PointOfInterestsController < ApplicationController
 
     			@poi.destroy
     			flash[:alert] = "POI was not created due to a problem with the Picture(s) you were trying to upload"
-    			render action: 'new'
+    			redirect_to action: 'new'
     		end
   		else
 
   			flash[:alert] = "POI was not created, contact us if problem persists"
-    		render action: 'new'
+    		redirect_to action: 'new'
   		end
 	end
 
