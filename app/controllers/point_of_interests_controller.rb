@@ -91,7 +91,7 @@ class PointOfInterestsController < ApplicationController
 			end
 
     		flash[:notice] = "POI was successfully updated"
-    		redirect_to action: 'edit'
+    		redirect_to @poi
 
   		else
 
