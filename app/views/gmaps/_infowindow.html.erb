@@ -15,12 +15,6 @@
 							<%= image_tag picture.photo.url(:square) %>
 						<% end %>
 					</div>
-
-					<div class="link">
-						<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>  |  
-						<%= link_to "Get Directions", "point_of_interests/" + gmappoi.id.to_s + "/directions" %>
-					</div>
-
 				</div>
 
 				<div class="span6">
@@ -60,18 +54,13 @@
 						<% end %>
 					</div>
 
+					<hr>
+					<div class="link">
+						<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>  |  
+						<%= link_to "Get Directions", "point_of_interests/" + gmappoi.id.to_s + "/directions" %>
+					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="body">
-			<h4>Summary</h4>
-			<%= gmappoi.summary %>
-		</div>
-		<hr>
-		<div class="link">
-			<%= link_to "Visit POI Page", "point_of_interests/" + gmappoi.id.to_s %>  |  
-			<%= link_to "Get Directions", "point_of_interests/" + gmappoi.id.to_s + "/directions" %>
 		</div>
 	</body>
 </html>
