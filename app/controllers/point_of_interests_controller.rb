@@ -23,40 +23,48 @@ class PointOfInterestsController < ApplicationController
 		@poi.user_id = current_user.id
 
 		if ( @poi.save )
-			#for main image
-			@picture = Picture.new
-			@picture.photo = params[:point_of_interest][:photo]
-			@picture.user_id = current_user.id
-			@picture.main_image = true
+			if (params[:point_of_interest][:photo] != nil)
+				#for main image
+				@picture = Picture.new
+				@picture.photo = params[:point_of_interest][:photo]
+				@picture.user_id = current_user.id
+				@picture.main_image = true
 
-			@picture.point_of_interest_id = @poi.id
+				@picture.point_of_interest_id = @poi.id
 
-			# for additional pictures
-			if (params[:point_of_interest][:photoarrays] != nil)
-				params[:point_of_interest][:photoarrays].each do |image|
-				  @document = Picture.new
-				  @document.photo = image
-				  @document.user_id = current_user.id
-				  @document.main_image = false
-				  @document.point_of_interest_id = @poi.id
-				  @document.save
-				end
-			end
+				if (@picture.save)
 
-			if (params[:point_of_interest][:photo] != nil && @picture.save)
+					# for additional pictures
+					if (params[:point_of_interest][:photoarrays] != nil)
+						params[:point_of_interest][:photoarrays].each do |image|
+						  @document = Picture.new
+						  @document.photo = image
+						  @document.user_id = current_user.id
+						  @document.main_image = false
+						  @document.point_of_interest_id = @poi.id
+						  @document.save
+						end
+					end
 
-				flash[:notice] = "POI was created successfully"
-    			redirect_to @poi
-    		else
+					flash[:notice] = "POI was created successfully"
+	    			redirect_to @poi, :format => 'html'
+	    		else
 
-    			@poi.destroy
-    			flash[:alert] = "POI was not created due to a problem with the Picture(s) you were trying to upload"
-    			redirect_to action: 'new'
-    		end
+	    			@poi.destroy
+	    			flash[:alert] = "POI was not created due to error with the main picture"
+	    			redirect_to action: 'new', :format => 'html'
+	    		end
+
+	    	else 
+	    		@poi.destroy
+	    		flash[:alert] = "POI was not created, you must include a main image"
+	    		redirect_to action: 'new', :format => 'html'
+	    	end
+	    	
   		else
 
   			flash[:alert] = "POI was not created, contact us if problem persists"
-    		redirect_to action: 'new'
+    		redirect_to action: 'new', :format => 'html'
   		end
 	end
 
@@ -92,13 +100,11 @@ class PointOfInterestsController < ApplicationController
 
     		flash[:notice] = "POI was successfully updated"
     		redirect_to @poi
-
   		else
 
   			flash[:alert] = "POI could not be updated"
-    		redirect_to action: 'edit'
+  			render 'edit'
   		end
-
 	end
 
 	# Destroys the POI

@@ -1,4 +1,4 @@
-<%= form_for @poi, :remote => true, :authenticity_token => true, :html => { :multipart => true } do |f| %>
+<%= form_for @poi, :authenticity_token => true, :html => { :multipart => true } do |f| %>
   	<body>
   		<div class="container-fluid">
   			<div class="row-fluid">
@@ -26,11 +26,9 @@
 				      	<% elsif params[:action] == "edit" %>
 
 				        	<%= render 'detailededit' %>
-
-				        	<% if current_user %> 
-								<h1><i class="fa fa-camera-retro"></i> Upload More of Your Photos</h1>
-								<%= f.file_field :photoarrays, :multiple => :true %>
-							<% end %>
+								
+							<h1><i class="fa fa-camera-retro"></i> Upload More of Your Photos</h1>
+							<%= f.file_field :photoarrays, :multiple => :true %>
 
 				      	<% end %>
 				    </div>
