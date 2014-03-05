@@ -52,22 +52,28 @@ class PicturesController < ApplicationController
     @ppu.user_id = current_user.id
 
     respond_to do |format|
-      if @picture.save
+      if ( @picture.save )
 
         @ppu.picture_id = @picture.id
 
-        if @ppu.save
+        if ( @ppu.save )
 
-          format.html { redirect_to @poi, notice: 'Picture was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @picture }
+          flash[:notice] = "Picture was uploaded and is pending admin allowance."
+          redirect_to @poi
         
+        else 
+
+          flash[:alert] = "Pending Picture Upload could not be created, Picture was deleted."
+
         end
 
       else
-        format.html { render action: 'new' }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        flash[:alert] = "Picture could not be saved."  
+        redirect_to action: 'new'
       end
+
     end
+    
   end
 
   # PATCH/PUT /pictures/1

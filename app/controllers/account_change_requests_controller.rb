@@ -17,8 +17,10 @@ class AccountChangeRequestsController < ApplicationController
 		
 
 		if ( @acr.save )
-    		redirect_to root_url
+			flash[:notice] = "Account Change Request has been sent to the Admins"
+    		redirect_to current_user
   		else
+  			flash[:alert] = "Account Change Request could not be completed."
     		render 'new'
   		end
 	end

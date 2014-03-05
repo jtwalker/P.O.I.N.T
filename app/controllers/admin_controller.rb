@@ -45,7 +45,7 @@ class AdminController < ApplicationController
 			flash[:notice] = 'Account change denied'
 			AccountTypeChangeMailer.send_denied_account_change_request_message(user, user.account_type, acr.account_type).deliver
 		else 
-			flash[:notice] = 'Could not deny account change'
+			flash[:alert] = 'Could not deny account change'
 		end
 
 		redirect_to action: "index"
