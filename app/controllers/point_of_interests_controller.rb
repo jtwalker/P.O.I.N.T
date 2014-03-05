@@ -49,12 +49,12 @@ class PointOfInterestsController < ApplicationController
 
     			@poi.destroy
     			flash[:alert] = "POI was not created due to a problem with the Picture(s) you were trying to upload"
-    			render 'new'
+    			render action: 'new'
     		end
   		else
 
   			flash[:alert] = "POI was not created, contact us if problem persists"
-    		render 'new'
+    		render action: 'new'
   		end
 	end
 
@@ -73,12 +73,30 @@ class PointOfInterestsController < ApplicationController
 	def update
   		@poi = PointOfInterest.find(params[:id])
  
-  		if @poi.update(params[:point_of_interest].permit(:latitude, :longitude, :summary, :sponsor_info, :artist_info))
+  		if @poi.update(post_params)
+    		
+    		if (params[:point_of_interest][:photoarrays] != nil)
+
+	  			params[:point_of_interest][:photoarrays].each do |image|
+				  @document = Picture.new
+				  @document.photo = image
+				  @document.user_id = current_user.id
+				  @document.main_image = false
+				  @document.point_of_interest_id = @poi.id
+				  @document.save
+				end
+
+			end
+
     		flash[:notice] = "POI was successfully updated"
-    		redirect_to @poi
+    		redirect_to action: 'edit'
+
   		else
-    		render 'edit'
+
+  			flash[:alert] = "POI could not be updated"
+    		redirect_to action: 'edit'
   		end
+
 	end
 
 	# Destroys the POI

@@ -37,9 +37,3 @@
 	</tbody>
 </table>
 </div>
-
-<% if current_user %>
-	<%= link_to new_picture_path(:poi => @poi.id), :class => "btn btn-success" do %>
-		<i class="fa fa-picture-o"></i> Upload Picture: Requires Approval
-	<% end %> 
-<% end %>

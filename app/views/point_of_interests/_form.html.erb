@@ -27,6 +27,11 @@
 
 				        	<%= render 'detailededit' %>
 
+				        	<% if current_user %> 
+								<h1><i class="fa fa-camera-retro"></i> Upload More of Your Photos</h1>
+								<%= f.file_field :photoarrays, :multiple => :true %>
+							<% end %>
+
 				      	<% end %>
 				    </div>
 
