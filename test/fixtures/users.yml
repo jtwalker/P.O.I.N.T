@@ -1,11 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  external_user_id: MyString
-  provider: MyString
-  account_type: MyString
+stephen:
+  uid: "00000000001"
+  provider: google_oauth2
+  account_type: ADMIN
+  name: Stephen Kendrick
+  email: skendri1@my.westga.edu
 
-two:
-  external_user_id: MyString
-  provider: MyString
-  account_type: MyString
+justin:
+  uid: "00000000002"
+  provider: facebook
+  account_type: ADMIN
+  name: Justin Walker
+  email: jwalke21@my.westga.edu
+
+susie:
+  uid: "00000000003"
+  provider: google_oauth2
+  account_type: POIMGR
+  name: Susie Daisy
+  email: susie.daisy@gmail.com
+
+lacy:
+  uid: "00000000004"
+  provider: facebook
+  account_type: POIMGR
+  name: Lacy Macy
+  email: lacy.macy@yahoo.com
+
+macy:
+  uid: "00000000005"
+  provider: google_oauth2
+  account_type: Standard
+  name: Macy Lacy
+  email: macy.lacy@yahoo.com
+
+gregg:
+  uid: "00000000006"
+  provider: facebook
+  account_type: Standard
+  name: Gregg
+  email: gregg@gregg.com

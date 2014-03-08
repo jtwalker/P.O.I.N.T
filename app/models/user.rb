@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
     has_many :accountchangerequests, :class_name => 'AccountChangeRequest', dependent: :destroy
     has_many :pendingpictureuploads, :class_name => 'PendingPictureUpload', dependent: :destroy
 
+    validates_presence_of :uid, :provider, :account_type, :name, :email
+
 	def self.from_omniauth(auth)
         where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
         	user.provider = auth.provider
