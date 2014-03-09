@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  point_of_interest_id: 
+firstcomment:
+  user: justin
+  point_of_interest: firstpoi
   body: MyText
 
-two:
-  user_id: 
-  point_of_interest_id: 
-  body: MyText
+secondcomment:
+  user: stephen
+  point_of_interest: secondpoi
+  body: MyTextToo
