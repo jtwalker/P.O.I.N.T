@@ -6,6 +6,7 @@ class PointOfInterest < ActiveRecord::Base
   
   accepts_nested_attributes_for :pictures, :allow_destroy => true
 
+  validates_presence_of :latitude, :longitude
   validates_presence_of :sponsor_info
   validates_presence_of :artist_info
   validates_presence_of :summary

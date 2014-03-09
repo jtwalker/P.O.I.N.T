@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 
-  reason_message: MyText
+  user: gregg
+  account_type: ADMIN
+  reason_message: "MyText"
 
 two:
-  user_id: 
-  reason_message: MyText
+  user: macy
+  account_type: POIMGR
+  reason_message: "I WANT IT"
