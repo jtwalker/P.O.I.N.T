@@ -22,7 +22,7 @@ class PointOfInterestTest < ActiveSupport::TestCase
 	end
 
 	test "user id is set" do
-		assert_equal 500740463, point_of_interests(:firstpoi).user_id, "user id did not match expected"
+		assert_equal users(:justin), point_of_interests(:firstpoi).user, "user id did not match expected"
 	end
 
 	test "should not create poi without latitude" do

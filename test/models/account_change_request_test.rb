@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AccountChangeRequestTest < ActiveSupport::TestCase
 	test "user is set" do
-		assert_equal 460338185, account_change_requests(:one).user_id, "User_id did not match expected"
+		assert_equal users(:gregg), account_change_requests(:one).user, "User_id did not match expected"
 	end
 
 	test "account type admin is set" do
