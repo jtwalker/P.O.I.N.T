@@ -63,7 +63,7 @@ class PointOfInterestsController < ApplicationController
 	    	
   		else
 
-  			flash[:alert] = "POI was not created, contact us if problem persists"
+  			flash[:alert] = "POI was not created, all areas must be filled. Contact us if problem persists"
     		redirect_to action: 'new', :format => 'html'
   		end
 	end

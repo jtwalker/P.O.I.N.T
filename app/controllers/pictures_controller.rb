@@ -51,27 +51,25 @@ class PicturesController < ApplicationController
     @ppu = PendingPictureUpload.new
     @ppu.user_id = current_user.id
 
-    respond_to do |format|
-      if ( @picture.save )
+    if ( @picture.save )
 
-        @ppu.picture_id = @picture.id
+      @ppu.picture_id = @picture.id
 
-        if ( @ppu.save )
+      if ( @ppu.save )
 
-          flash[:notice] = "Picture was uploaded and is pending admin allowance."
-          redirect_to @poi
+        flash[:notice] = "Picture was uploaded and is pending admin allowance."
+        redirect_to @poi
         
-        else 
+      else 
 
-          flash[:alert] = "Pending Picture Upload could not be created, Picture was deleted."
-
-        end
-
-      else
-        flash[:alert] = "Picture could not be saved."  
-        redirect_to action: 'new'
+        flash[:alert] = "Pending Picture Upload could not be created, Picture was deleted."
+        @picture.destroy
+        
       end
 
+    else
+      flash[:alert] = "Picture could not be saved."  
+      redirect_to action: 'new'
     end
     
   end
