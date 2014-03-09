@@ -1,5 +1,7 @@
+<%= bootstrap_flash %>
+
 <h1>New picture for POI: <%= @poi.id %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', pictures_path %>
+<%= link_to 'Back', @poi %>

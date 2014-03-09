@@ -30,6 +30,9 @@ class PicturesController < ApplicationController
     @picture = Picture.new
     @poi = PointOfInterest.find(params[:poi])
 
+    rescue ActiveRecord::RecordNotFound
+      redirect_to root_url, :flash => { :error => "POI not found." }
+
   end
 
   # GET /pictures/1/edit
@@ -58,20 +61,21 @@ class PicturesController < ApplicationController
       if ( @ppu.save )
 
         flash[:notice] = "Picture was uploaded and is pending admin allowance."
-        redirect_to @poi
         
       else 
 
         flash[:alert] = "Pending Picture Upload could not be created, Picture was deleted."
         @picture.destroy
-        
+
       end
 
     else
       flash[:alert] = "Picture could not be saved."  
-      redirect_to action: 'new'
+    
     end
     
+    redirect_to @poi
+
   end
 
   # PATCH/PUT /pictures/1
