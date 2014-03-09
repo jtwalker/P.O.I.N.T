@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 
-  point_of_interest_id: 
-  rating: 1
+firstrating:
+  user: justin
+  point_of_interest: firstpoi
+  rating: 5
 
-two:
-  user_id: 
-  point_of_interest_id: 
+secondrating:
+  user: stephen
+  point_of_interest: firstpoi
   rating: 1
