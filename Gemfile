@@ -51,9 +51,6 @@ gem "paperclip", "~> 3.5.3"
 #Geocoder
 gem "geocoder"
 
-#JQuery File Uploader
-gem "jquery-fileupload-rails"
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

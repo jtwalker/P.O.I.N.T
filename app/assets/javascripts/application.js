@@ -14,6 +14,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require underscore
-//= require jquery-fileupload
 //= require gmaps/google
 //= require_tree .

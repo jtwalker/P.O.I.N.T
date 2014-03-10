@@ -14,12 +14,11 @@
   <%= f.hidden_field :point_of_interest_id, :value => @poi.id %> 
 
   <div class="field">
-  	<%= f.label :photo %>
     <%= f.file_field :photo, accept: 'image/png,image/gif,image/jpeg' %>
   </div>
+  <br />
   <div class="actions">
-    <%= f.submit %>
-    <%= link_to 'Nevermind', pictures_path, class: 'button' %>
+    <%= f.submit "Submit Picture" %>
   </div>
 <% end %>
 
