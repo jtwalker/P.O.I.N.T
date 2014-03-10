@@ -4,4 +4,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', @poi %>
+<%= link_to @poi, :class => "btn btn-danger" do %>
+	<i class="fa fa-arrow-circle-o-left"></i> Back
+<% end %>

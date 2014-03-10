@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if ( current_user == nil || admin? == false)
+      flash[:alert] = "You are not allowed there."
       redirect_to root_url
     end
 
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
 
      if ( @user == nil || current_user == nil || (@user.id != current_user.id && admin? == false ) )
+      flash[:alert] = "You are not allowed there."
       redirect_to root_url
      end
   end
@@ -33,7 +35,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     
-    if ( @user == nil || current_user == nil || (@user.id != current_user.id && admin? == false) )
+    if ( @user == nil || current_user == nil || admin? == false )
+      flash[:alert] = "You are not allowed there."
       redirect_to root_url
     end
 
