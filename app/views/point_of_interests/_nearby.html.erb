@@ -1,0 +1,46 @@
+<div class="nearby">
+	<h2><i class="fa fa-globe fa-spin"></i> Nearby Locations</h2>
+
+	<div class="tables">
+		<% if @poi.nearbys(10).size > 0 %>
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th>Main Image</th>
+			      <th>Distance (Miles)</th>
+			      <th></th>
+			    </tr>
+			  </thead>
+
+			  
+			  	<tbody>
+			    	<% @poi.nearbys(10).each do |nearby| %>
+				   		<% if nearby %>
+					    	<tr>
+					    		<td>
+					    			<% pic = Picture.where(point_of_interest_id: nearby, main_image: true).first %>
+										<%= link_to image_tag(pic.photo.url(:thumb)), nearby %>
+					    		</td>
+					      		<td>
+					      			<%= nearby.distance.round(2) %>
+					      		</td>
+					      		<td>
+					      			<%= link_to nearby, :class => "btn btn-info" do %>
+						            	<i class="fa fa-location-arrow"></i> Show POI
+						            <% end %>
+					      		</td>
+					    	</tr>
+						<% end %>
+			    	<% end %>
+			 	</tbody>
+				
+			</table>
+		<% else %>
+			<p>
+				There are not any nearby Point of Interests
+			</p>
+		<% end %>
+
+	</div>
+
+</div>
