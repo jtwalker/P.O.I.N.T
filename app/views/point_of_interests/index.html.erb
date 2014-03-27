@@ -18,7 +18,7 @@
     </tr>
    
     <% @pois.each do |poi| %>
-      <% if poi.user_id == current_user.id %>
+      <% if poi.user_id == current_user.id || admin? %>
         <tr>
           <td><%= poi.id %></td>
           <td><%= poi.latitude %></td>
