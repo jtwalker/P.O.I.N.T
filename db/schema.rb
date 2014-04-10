@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140227193314) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "account_change_requests", force: true do |t|
     t.integer  "user_id"
     t.text     "reason_message"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140227193314) do
     t.string   "account_type"
   end
 
-  add_index "account_change_requests", ["user_id"], name: "index_account_change_requests_on_user_id"
+  add_index "account_change_requests", ["user_id"], name: "index_account_change_requests_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20140227193314) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["point_of_interest_id"], name: "index_comments_on_point_of_interest_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["point_of_interest_id"], name: "index_comments_on_point_of_interest_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "pending_picture_uploads", force: true do |t|
     t.integer  "user_id"
@@ -41,10 +44,10 @@ ActiveRecord::Schema.define(version: 20140227193314) do
     t.datetime "updated_at"
   end
 
-  add_index "pending_picture_uploads", ["picture_id"], name: "index_pending_picture_uploads_on_picture_id"
-  add_index "pending_picture_uploads", ["user_id"], name: "index_pending_picture_uploads_on_user_id"
+  add_index "pending_picture_uploads", ["picture_id"], name: "index_pending_picture_uploads_on_picture_id", using: :btree
+  add_index "pending_picture_uploads", ["user_id"], name: "index_pending_picture_uploads_on_user_id", using: :btree
 
-  create_table "pictures", force: true do |t|
+  create_table "pictures", id: false, force: true do |t|
     t.integer  "user_id"
     t.integer  "point_of_interest_id"
     t.datetime "created_at"
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 20140227193314) do
     t.string   "address"
   end
 
-  add_index "point_of_interests", ["user_id"], name: "index_point_of_interests_on_user_id"
+  add_index "point_of_interests", ["user_id"], name: "index_point_of_interests_on_user_id", using: :btree
 
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
@@ -78,8 +81,8 @@ ActiveRecord::Schema.define(version: 20140227193314) do
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["point_of_interest_id"], name: "index_ratings_on_point_of_interest_id"
-  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+  add_index "ratings", ["point_of_interest_id"], name: "index_ratings_on_point_of_interest_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "uid"

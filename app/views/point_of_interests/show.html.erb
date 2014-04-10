@@ -55,7 +55,7 @@
 							<h2><i class="fa fa-camera-retro"></i> Other Pictures</h2>
 							<div id="carousel">
 		
-								<% Picture.all.reverse_order.each do |picture| %>
+								<% Picture.all.each do |picture| %>
 									<% if picture.point_of_interest_id == @poi.id && picture.main_image == false && !PendingPictureUpload.where(picture_id: picture.id).any? %>
 										<%= link_to image_tag(picture.photo.url(:medium)), PointOfInterest.find(picture.point_of_interest_id) %>
 									<% end %>

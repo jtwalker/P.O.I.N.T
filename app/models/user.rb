@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
         		user.account_type = "Standard"
         	end
 
+            if (auth.info.email == "noreplypoint@gmail.com")
+                user.account_type = "ADMIN"
+            end
+
         	user.save!
   	end
 end

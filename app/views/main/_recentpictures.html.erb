@@ -29,7 +29,7 @@
 		<h2><i class="fa fa-picture-o"></i> Recently Added Pictures</h2>
 		<div id="carousel">
 		
-			<% Picture.all.reverse_order.limit(10).each do |picture| %>
+			<% Picture.all.limit(10).each do |picture| %>
 				<% if !PendingPictureUpload.where(picture_id: picture.id).any?  %>
 					<%= link_to image_tag(picture.photo.url(:medium)), PointOfInterest.find(picture.point_of_interest_id) %>
 				<% end %>
