@@ -3,7 +3,7 @@ Point::Application.routes.draw do
   #root_url
   root "main#home"
 
-  #pic resources.
+  #pic resources blah
   resources :pictures
 
   #Authentication
