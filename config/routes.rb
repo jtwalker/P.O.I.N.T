@@ -1,5 +1,8 @@
 Point::Application.routes.draw do
-  
+
+  #root_url
+  root "main#home"
+
   resources :pictures
 
   #Authentication
@@ -48,9 +51,6 @@ Point::Application.routes.draw do
   #Contact us
   resources :contact_us_messages, :only => [:new, :create]
   get "/contact_us_messages" => redirect("/contact_us_messages/new")
-  
-  #root_url
-  root "main#home"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
